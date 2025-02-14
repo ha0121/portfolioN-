@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="script.js">
+    <title>Portfolio</title>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            
+            <h1 class="header-title">HAO NGUYEN</h1>
+            <p class="header-subtitle">Ho Chi Minh city based product designer/ux ui designer, i building things that hopefully encourage us to lead more thoughtful lives.</p>
+            
+            <div class="menu">
+                <div class="menu-item" onclick="showWork()">
+                    <img src="img/interview_ david shrigley on his artistic interpretation of maison ruinart.jpg" alt="Work Icon" class="menu-icon">
+                    <div class="menu-text">
+                        WORK
+                        <span class="menu-subtext">A selection of recent work</span>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="showAbout()">
+                    <img src="img/download (2).jpg" alt="Work Icon" class="menu-icon">
+                    <div class="menu-text">
+                        ABOUT
+                        <span class="menu-subtext">Learn more about me</span>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="showGame()">
+                    <img src="img/2000's spider-man game icon.jpg" alt="Work Icon" class="menu-icon">
+                    <div class="menu-text">
+                        GAME PROJECTS
+                        <span class="menu-subtext">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:haonguyenanh03@gmail.com" class="footer-link">EMAIL</a>
+                <div class="footer-divider">/</div>
+                <a href="https://www.linkedin.com/in/nguy%E1%BB%85n-anh-h%C3%A0o-4302a9223/" target="_blank" class="footer-link">LinkedIn</a>
+                <div class="footer-divider">/</div>
+                <a href="img/CV-NGUYEN-ANH-HAO-UX-UI-DESIGNER (1).pdf" target="_blank" class="footer-link">Resumé</a>
+            </div>
+            <div class="footer-copy">©2025 Hao Nguyen</div>
+            
+        </aside>
+        
+        <main id="main-content" class="work-section">
+        </main>
+        <button id="toggle-sidebar" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    <script src="script.js"  >
+       
+    </script>
+</body>
+</html>
