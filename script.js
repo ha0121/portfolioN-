@@ -245,15 +245,15 @@ function showWorkDetails2(title, subtitle, description, year) {
          <div class="work-image">
             <img src="img/search2-jd.png" alt="${title}" class="full-size-image">
         </div>
-          <div class="work-info">
-            <p class="work-description">Demo Prototype</p>
+   <div class="work-info">
+            <p class="work-description">Order for Delivery & and more screen in the Stripe food delivery app features an order summary, delivery options, payment methods, promotions, special instructions, and estimated delivery time, all aimed at providing a seamless ordering experience for users while ensuring they have everything needed before confirming their order.</p>
         </div>
         <div class="work-image">
             <img src="img/JD1.png" alt="${title}" class="full-size-image">
             <img src="img/JD.png" alt="${title}" class="full-size-image">
         </div>
-        <div class="work-info">
-            <p class="work-description">Order for Delivery & and more screen in the Stripe food delivery app features an order summary, delivery options, payment methods, promotions, special instructions, and estimated delivery time, all aimed at providing a seamless ordering experience for users while ensuring they have everything needed before confirming their order.</p>
+  <div class="work-info">
+            <p class="work-description">Demo Prototype</p>
         </div>
  <iframe class="figma-iframe" src="https://embed.figma.com/proto/pgAyL3T7JLKTGXPi3YAc5d/JOB%26RECUITMENT?page-id=81%3A538&amp;node-id=749-9068&amp;node-type=frame&amp;viewport=-20%2C122%2C0.2&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=749%3A9068&amp;show-proto-sidebar=1&amp;embed-host=share" allowfullscreen></iframe>
         
