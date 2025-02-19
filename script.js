@@ -75,7 +75,7 @@ function showAbout() {
                     <ul class="about-list">
                         <li><strong>2024-now</strong></li>
                         <li><strong>Freelancer</strong></li>
-                        <li><strong>10/2023-12/2024</strong></li>
+                        <li><strong>10/2023-12/2023</strong></li>
                         <li><strong>Intern UX/UI Designer at ITBee Soltuion</strong></li>
                     </ul>
                 </div>
