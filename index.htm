@@ -4,39 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="script.js">
     <title>Portfolio</title>
 </head>
 <body>
+    <!-- Loading Animation Overlay -->
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
     <div class="container">
+        <!-- Sidebar toggle button for mobile -->
+        <button id="toggle-sidebar">&#9776;</button>
         <aside class="sidebar">
-            
+            <!-- Close button for mobile sidebar -->
+            <button id="close-sidebar">&times;</button>
+            <!-- Light/Dark mode toggle placed above name -->
+            <div class="mode-toggle-container" style="margin-bottom: 18px;">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="mode-toggle-switch" aria-label="Toggle light/dark mode">
+                    <span class="slider"></span>
+                </label>
+                <span id="mode-toggle-label" style="margin-left:10px;font-size:14px;">Dark Mode</span>
+            </div>
             <h1 class="header-title">HAO NGUYEN</h1>
-            <p class="header-subtitle">Ho Chi Minh city based product designer/ux ui designer, i building things that hopefully encourage us to lead more thoughtful lives.</p>
+            <p class="header-subtitle">
+                Ho Chi Minh City-based product designer / UX/UI designer. I build things that (hopefully) encourage people to lead more thoughtful lives.
+            </p>
             
-            <div class="menu">
-                <div class="menu-item" onclick="showWork()">
+            <nav class="menu">
+                <div class="menu-item" data-section="work" draggable="true" onclick="showWork()">
                     <img src="img/interview_ david shrigley on his artistic interpretation of maison ruinart.jpg" alt="Work Icon" class="menu-icon">
                     <div class="menu-text">
                         WORK
                         <span class="menu-subtext">A selection of recent work</span>
                     </div>
                 </div>
-                <div class="menu-item" onclick="showAbout()">
-                    <img src="img/download (2).jpg" alt="Work Icon" class="menu-icon">
+                <div class="menu-item" data-section="about" draggable="true" onclick="showAbout()">
+                    <img src="img/download (2).jpg" alt="About Icon" class="menu-icon">
                     <div class="menu-text">
                         ABOUT
                         <span class="menu-subtext">Learn more about me</span>
                     </div>
                 </div>
-                <div class="menu-item" onclick="showGame()">
-                    <img src="img/2000's spider-man game icon.jpg" alt="Work Icon" class="menu-icon">
+                <div class="menu-item" data-section="game" draggable="true" onclick="showGame()">
+                    <img src="img/2000's spider-man game icon.jpg" alt="Game Icon" class="menu-icon">
                     <div class="menu-text">
                         GAME PROJECTS
-                        <span class="menu-subtext">Loading...</span>
+                        <span class="menu-subtext">Coming soon...</span>
                     </div>
                 </div>
+            </nav>
+            
+            <!-- Spotify Playlist moved here -->
+            <div class="spotify-playlist">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0BFqbDnUs4LFfNIAulZGhA?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
+
             <div class="footer-links">
                 <a href="mailto:haonguyenanh03@gmail.com" class="footer-link">EMAIL</a>
                 <div class="footer-divider">/</div>
@@ -45,16 +68,67 @@
                 <a href="img/CV-NGUYEN-ANH-HAO-UX-UI-DESIGNER.pdf" target="_blank" class="footer-link">Resumé</a>
             </div>
             <div class="footer-copy">©2025 Hao Nguyen</div>
-            
         </aside>
-        
         <main id="main-content" class="work-section">
         </main>
-        <button id="toggle-sidebar" onclick="toggleSidebar()">☰</button>
     </div>
 
-    <script src="script.js"  >
-       
+    <script src="script.js"></script>
+    <script>
+        // Khởi tạo drag and drop khi DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.initMenuDragDrop) window.initMenuDragDrop();
+
+            // Responsive sidebar toggle logic
+            const sidebar = document.querySelector('.sidebar');
+            const toggleBtn = document.getElementById('toggle-sidebar');
+            const closeBtn = document.getElementById('close-sidebar');
+            function showSidebar() {
+                sidebar.style.display = 'flex';
+            }
+            function hideSidebar() {
+                sidebar.style.display = 'none';
+            }
+            if (toggleBtn) toggleBtn.addEventListener('click', showSidebar);
+            if (closeBtn) closeBtn.addEventListener('click', hideSidebar);
+
+            // Hide sidebar on mobile by default
+            function handleResize() {
+                if (window.innerWidth <= 768) {
+                    sidebar.style.display = 'none';
+                } else {
+                    sidebar.style.display = 'flex';
+                }
+            }
+            window.addEventListener('resize', handleResize);
+            handleResize();
+        });
+
+        // Light/Dark mode toggle logic (switch style)
+        document.addEventListener('DOMContentLoaded', function() {
+            const modeSwitch = document.getElementById('mode-toggle-switch');
+            const modeLabel = document.getElementById('mode-toggle-label');
+            function setMode(mode) {
+                if (mode === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    modeSwitch.checked = true;
+                    modeLabel.textContent = 'Light Mode';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    modeSwitch.checked = false;
+                    modeLabel.textContent = 'Dark Mode';
+                }
+                localStorage.setItem('theme', mode);
+            }
+            if (modeSwitch) {
+                modeSwitch.addEventListener('change', function() {
+                    setMode(modeSwitch.checked ? 'light' : 'dark');
+                });
+            }
+            // Init mode from localStorage or default to dark
+            const saved = localStorage.getItem('theme');
+            setMode(saved === 'light' ? 'light' : 'dark');
+        });
     </script>
 </body>
 </html>
