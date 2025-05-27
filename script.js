@@ -1,46 +1,84 @@
+// Loading overlay and image preload
+window.onload = function() {
+    // Hide loading overlay when everything is loaded
+    const overlay = document.getElementById('loading-overlay');
+    if (overlay) {
+        overlay.style.opacity = '0';
+        setTimeout(() => { overlay.style.display = 'none'; }, 400);
+    }
+    preloadImages();
+};
+
+// Preload images for faster UX
+function preloadImages() {
+    const images = [
+        'img/img-project1.jpg',
+        'img/Frame 4.jpg',
+        'img/12.png',
+        'img/12345.jpg',
+        'img/zoom in.png',
+        'img/3333.png',
+        'img/1.png',
+        'img/2222.png'
+    ];
+    images.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+// Section navigation logic
 function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     sidebar.style.display = sidebar.style.display === 'none' || sidebar.style.display === '' ? 'flex' : 'none';
 }
 
-// Function to show the Work section
+function setActiveMenu(section) {
+    document.querySelectorAll('.menu-item').forEach(item => {
+        if (item.dataset.section === section) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+}
+
 function showWork() {
     localStorage.setItem('currentSection', 'work');
-    // Remove active class from all menu items
-    document.querySelectorAll('.menu-item').forEach(item => {
-        item.classList.remove('active');
-    });
-    
-    // Add active class to the Work menu item
-    document.querySelector('.menu-item:nth-child(1)').classList.add('active');
-
+    setActiveMenu('work');
     document.getElementById('main-content').innerHTML = `
         <h2 class="section-title">SELECT WORK</h2>
         <div class="card-container">
-            <div class="card" onclick="showWorkDetails('Candid', 'Mobile App', 'An app serving real-time news and funding information for nonprofit organizations.', '2020')">
-                <img class="card-image" src="img/Frame 4.jpg" alt="Candid">
+            <div class="card" onclick="showWorkDetails('Stripe Application', 'Mobile App', '', '2024')">
+                <img class="card-image" src="img/Frame 4.jpg" alt="Stripe Application">
                 <div class="card-details">
                     <div class="card-title">Stripe Application</div>
                     <div class="card-subtitle">Mobile App</div>
-                    <div class="card-description">Stripe is a popular payment processing platform that can be used to integrate payments into various applications, including food delivery, driver services, and grocery shipping.</div>
+                    <div class="card-description">
+                        A modern payment platform UI for food delivery, driver services, and grocery shipping. Focused on seamless user experience and clean, bold visuals.
+                    </div>
                     <div class="card-year">2024</div>
                 </div>
             </div>
-            <div class="card" onclick="showWorkDetails2('Candid', 'Mobile App', 'An app serving real-time news and funding information for nonprofit organizations.', '2020')">
-                <img class="card-image" src="img/jd2.png" alt="Candid">
+            <div class="card" onclick="showWorkDetails2('Job & Recruitment', 'Mobile App', '', '2024')">
+                <img class="card-image" src="img/jd2.png" alt="Job & Recruitment">
                 <div class="card-details">
-                    <div class="card-title">Job & Recuitment</div>
+                    <div class="card-title">Job & Recruitment</div>
                     <div class="card-subtitle">Mobile App</div>
-                    <div class="card-description">Job & Recuitment is a job search app in Vietnam, designed to efficiently connect job seekers and employers. With JR, we commit to providing a simple, fast, and flexible job search and recruitment experience.</div>
+                    <div class="card-description">
+                        A job search app for Vietnam, connecting job seekers and employers with a fast, flexible, and intuitive interface. Includes research, personas, and prototype.
+                    </div>
                     <div class="card-year">2024</div>
                 </div>
             </div>
-              <div class="card" onclick="showWorkDetails3('Candid', 'Mobile App', 'An app serving real-time news and funding information for nonprofit organizations.', '2020')">
-                <img class="card-image" src="img/japan-team.png" alt="Candid">
+            <div class="card" onclick="showWorkDetails3('Fukuoka SoftBank HAWKS Gaming', 'Website', '', '2024')">
+                <img class="card-image" src="img/japan-team.png" alt="Fukuoka SoftBank HAWKS Gaming">
                 <div class="card-details">
                     <div class="card-title">Fukuoka SoftBank HAWKS Gaming</div>
                     <div class="card-subtitle">Website</div>
-                    <div class="card-description">HAWKS X Esport its participation in the eSports Pro League, the Fukuoka SoftBank Hawks will further promote e-sports and aim to become the world's number one entertainment company that transcends the boundaries of professional baseball teams.</div>
+                    <div class="card-description">
+                        Esports team website for the Fukuoka SoftBank Hawks. Vibrant, energetic, and designed to promote e-sports and team spirit.
+                    </div>
                     <div class="card-year">2024</div>
                 </div>
             </div>
@@ -48,20 +86,12 @@ function showWork() {
     `;
 }
 
-// Function to show the About section
 function showAbout() {
     localStorage.setItem('currentSection', 'about');
-    // Remove active class from all menu items
-    document.querySelectorAll('.menu-item').forEach(item => {
-        item.classList.remove('active');
-    });
-    
-    // Add active class to the About menu item
-    document.querySelector('.menu-item:nth-child(2)').classList.add('active');
-
+    setActiveMenu('about');
     document.getElementById('main-content').innerHTML = `
         <h2 class="section-title">ABOUT ME</h2>
-        <div  class="about-content">
+        <div class="about-content">
             <div class="about-left">
                 <img src="img/avatar1.jpg" alt="A description of the image" class="about-image">
                 <p style="font-weight: 700; font-size: 18px;">HI, I'M HAO 🤟🏼</p>
@@ -105,40 +135,21 @@ function showAbout() {
                         <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nguy%E1%BB%85n-anh-h%C3%A0o-4302a9223/" target="_blank">linkedin.com/in/haonguyen03</a></li>
                     </ul>
                 </div>
-                <div class="spotify-playlist">
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0BFqbDnUs4LFfNIAulZGhA?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                </div>
-                
             </div>
         </div>
     `;
-    
 }
+
 function showGame() {
     localStorage.setItem('currentSection', 'game');
-    // Remove active class from all menu items
-    document.querySelectorAll('.menu-item').forEach(item => {
-        item.classList.remove('active');
-    });
-}    
+    setActiveMenu('game');
+    document.getElementById('main-content').innerHTML = `
+        <h2 class="section-title">GAME PROJECTS</h2>
+        <div style="padding: 30px; color: var(--text-color);">Coming soon...</div>
+    `;
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-        const currentSection = localStorage.getItem('currentSection');
-        if (currentSection) {
-            if (currentSection === 'work') {
-                showWork();
-            } else if (currentSection === 'about') {
-                showAbout();
-            } else if (currentSection === 'game') {
-                showGame();
-            }
-        } else {
-            // Default to showing work if no section is stored
-            showWork();
-        }
-    });
-// Function to show details of a specific work
-// Function to show details of a specific work
+// Section details logic (unchanged)
 function showWorkDetails(title, subtitle, description, year) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.getElementById('main-content').innerHTML = `
@@ -303,24 +314,116 @@ function showWorkDetails3(title, subtitle, description, year) {
 
 }
 
-function preloadImages() {
-    const images = [
-        'img/img-project1.jpg',
-        'img/Frame 4.jpg',
-        'img/12.png',
-        'img/12345.jpg',
-        'img/zoom in.png',
-        'img/3333.png',
-        'img/1.png',
-        'img/2222.png'
-    ];
+// Drag and drop logic for menu
+function initMenuDragDrop() {
+    const menu = document.querySelector('.menu');
+    if (!menu) return;
+    let draggedItem = null;
 
-    images.forEach(src => {
-        const img = new Image();
-        img.src = src;
+    // Randomize menu order on first load (or if not saved)
+    const menuOrderKey = 'menuOrder';
+    let order = JSON.parse(localStorage.getItem(menuOrderKey));
+    const items = Array.from(menu.children);
+
+    if (!order || order.length !== items.length) {
+        // Randomize
+        order = items.map((_, i) => i);
+        for (let i = order.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [order[i], order[j]] = [order[j], order[i]];
+        }
+        localStorage.setItem(menuOrderKey, JSON.stringify(order));
+    }
+
+    // Apply order
+    order.forEach(idx => menu.appendChild(items[idx]));
+
+    // Drag events
+    menu.querySelectorAll('.menu-item').forEach(item => {
+        item.addEventListener('dragstart', function(e) {
+            draggedItem = item;
+            item.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        });
+        item.addEventListener('dragend', function() {
+            draggedItem = null;
+            item.classList.remove('dragging');
+            menu.querySelectorAll('.menu-item').forEach(i => i.classList.remove('drag-over'));
+            // Save new order
+            const newOrder = Array.from(menu.children).map(i => items.indexOf(i));
+            localStorage.setItem(menuOrderKey, JSON.stringify(newOrder));
+        });
+        item.addEventListener('dragover', function(e) {
+            e.preventDefault();
+        });
+        item.addEventListener('dragenter', function(e) {
+            if (item !== draggedItem) item.classList.add('drag-over');
+        });
+        item.addEventListener('dragleave', function() {
+            item.classList.remove('drag-over');
+        });
+        item.addEventListener('drop', function(e) {
+            e.preventDefault();
+            if (item !== draggedItem) {
+                menu.insertBefore(draggedItem, item.nextSibling === draggedItem ? item : item.nextSibling);
+            }
+            menu.querySelectorAll('.menu-item').forEach(i => i.classList.remove('drag-over'));
+        });
     });
 }
 
-// Gọi hàm preloadImages khi trang được tải
-window.onload = preloadImages;
+window.initMenuDragDrop = initMenuDragDrop;
+
+// Initial section load
+document.addEventListener('DOMContentLoaded', () => {
+    const currentSection = localStorage.getItem('currentSection');
+    if (currentSection === 'about') showAbout();
+    else if (currentSection === 'game') showGame();
+    else showWork();
+});
+
+// Responsive sidebar toggle logic (for mobile)
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.sidebar');
+    const toggleBtn = document.getElementById('toggle-sidebar');
+    const closeBtn = document.getElementById('close-sidebar');
+    function showSidebar() {
+        // Animation: add class for open
+        sidebar.style.display = 'flex';
+        setTimeout(() => sidebar.classList.add('sidebar-open'), 10);
+    }
+    function hideSidebar() {
+        // Animation: remove class for close
+        sidebar.classList.remove('sidebar-open');
+        setTimeout(() => { sidebar.style.display = 'none'; }, 300);
+    }
+    if (toggleBtn) toggleBtn.addEventListener('click', showSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', hideSidebar);
+
+    // Hide sidebar on mobile by default
+    function handleResize() {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.remove('sidebar-open');
+            sidebar.style.display = 'none';
+        } else {
+            sidebar.classList.remove('sidebar-open');
+            sidebar.style.display = 'flex';
+        }
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    // Optional: Hide sidebar when clicking outside (mobile only)
+    document.addEventListener('click', function(e) {
+        if (
+            window.innerWidth <= 768 &&
+            sidebar.style.display === 'flex' &&
+            sidebar.classList.contains('sidebar-open') &&
+            !sidebar.contains(e.target) &&
+            e.target !== toggleBtn
+        ) {
+            hideSidebar();
+        }
+    });
+});
 
