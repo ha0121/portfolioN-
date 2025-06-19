@@ -335,7 +335,7 @@ function showWorkDetailsBlueQuiz(title, subtitle, description, year) {
                 </div>
             </div>
             <div class="work-image">
-                <img src="img/Frame 4.png" alt="${title}" class="full-size-image">
+                <img src="img/Frame 42.png" alt="${title}" class="full-size-image">
             </div>
         </div>
         <div class="work-info">
