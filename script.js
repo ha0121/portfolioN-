@@ -49,6 +49,17 @@ function showWork() {
     document.getElementById('main-content').innerHTML = `
         <h2 class="section-title">SELECT WORK</h2>
         <div class="card-container">
+            <div class="card" onclick="showWorkDetailsBlueQuiz('Blue Quiz - Chelsea FC X FPT', 'Web Application', '', '2024')">
+                <img class="card-image" src="img/logo-chelsea.png" alt="Blue Quiz - Chelsea FC X FPT">
+                <div class="card-details">
+                    <div class="card-title">Blue Quiz - Chelsea FC X FPT</div>
+                    <div class="card-subtitle">Web Application</div>
+                    <div class="card-description">
+                        A football quiz web app for Chelsea FC fans, built for the FPT event. Features interactive questions, real-time scoring, and a Chelsea-inspired UI.
+                    </div>
+                    <div class="card-year">2025</div>
+                </div>
+            </div>
             <div class="card" onclick="showWorkDetails('Stripe Application', 'Mobile App', '', '2024')">
                 <img class="card-image" src="img/Frame 4.jpg" alt="Stripe Application">
                 <div class="card-details">
@@ -137,15 +148,6 @@ function showAbout() {
                 </div>
             </div>
         </div>
-    `;
-}
-
-function showGame() {
-    localStorage.setItem('currentSection', 'game');
-    setActiveMenu('game');
-    document.getElementById('main-content').innerHTML = `
-        <h2 class="section-title">GAME PROJECTS</h2>
-        <div style="padding: 30px; color: var(--text-color);">Coming soon...</div>
     `;
 }
 
@@ -314,6 +316,37 @@ function showWorkDetails3(title, subtitle, description, year) {
 
 }
 
+// Add Blue Quiz - Chelsea FC X FPT details popup
+function showWorkDetailsBlueQuiz(title, subtitle, description, year) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('main-content').innerHTML = `
+        <div class="work-details">
+            <div class="back-icon" onclick="showWork()">&#60;</div>
+            <div class="work-image">
+                <img src="img/logo-chelsea.png" alt="${title}" class="full-size-image">
+            </div>
+            <div class="work-info">
+                <p class="work-subtitle">${subtitle}</p>
+                <h2 class="work-title">BLUE QUIZ - CHELSEA FC X FPT</h2>
+                <p class="work-description">Blue Quiz is a web application designed for Chelsea FC fans, created for the FPT event. The app features interactive football quizzes, real-time scoring, and a Chelsea-inspired user interface. It aims to engage fans and test their knowledge about the club in a fun, competitive way.</p>
+                <div class="work-meta">
+                    <p><strong>Year:</strong> 2025</p>
+                    <p><strong>Tools:</strong> Figma, Adobe Photoshop</p>
+                </div>
+            </div>
+            <div class="work-image">
+                <img src="img/Frame 4.png" alt="${title}" class="full-size-image">
+            </div>
+        </div>
+        <div class="work-info">
+            <p class="work-description">The quiz includes multiple-choice questions, a timer, and instant feedback for each answer. The design uses Chelsea FC's signature blue color palette and football-themed graphics to create an immersive experience for fans.</p>
+        </div>
+    `;
+    const workDetails = document.querySelector('.work-details');
+    workDetails.style.display = 'block';
+    workDetails.classList.add('fade-in');
+}
+
 // Drag and drop logic for menu
 function initMenuDragDrop() {
     const menu = document.querySelector('.menu');
@@ -378,7 +411,6 @@ window.initMenuDragDrop = initMenuDragDrop;
 document.addEventListener('DOMContentLoaded', () => {
     const currentSection = localStorage.getItem('currentSection');
     if (currentSection === 'about') showAbout();
-    else if (currentSection === 'game') showGame();
     else showWork();
 });
 
