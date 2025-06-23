@@ -104,7 +104,7 @@ function showAbout() {
         <h2 class="section-title">ABOUT ME</h2>
         <div class="about-content">
             <div class="about-left">
-                <img src="img/haonguyen-photo.jpg" alt="A description of the image" class="about-image">
+                <img src="img/haonguyen-photo.png" alt="A description of the image" class="about-image">
                 <p style="font-weight: 700; font-size: 18px;">HI, I'M HAO 🤟🏼</p>
                 <p style="font-weight: 700; font-size: 18px;">I'M CURRENTLY A FREELANCE DESIGNER</p>
                 <p>I specialize in building thoughtful and user-centered digital experiences that encourage people to lead more intentional lives.</p>
