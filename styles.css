@@ -451,6 +451,7 @@ body {
     object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
     border-radius: 8px; /* Bo góc */
     margin-bottom: 20px; /* Khoảng cách phía dưới */
+    filter: grayscale(100%); /* Chuyển sang trắng đen */
 }
 
 /* Spotify Playlist Styling */
