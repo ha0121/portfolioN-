@@ -19,9 +19,7 @@ function preloadImages() {
         'img/zoom in.png',
         'img/3333.png',
         'img/1.png',
-        'img/2222.png',
-        'img/chelsea-page.png'
-
+        'img/2222.png'
     ];
     images.forEach(src => {
         const img = new Image();
@@ -126,7 +124,7 @@ function showAbout() {
                     <h3 class="about-subtitle">EDUCATION</h3>
                     <ul class="about-list">
                         <li><strong></strong>2021-2024</li>
-                        <li><strong>Information Technology</strong> - SaiGon Technology University</li>
+                        <li><strong>Information Technology</strong> - SaiGon Technology University</li>I
                         <li><strong></strong>2023</li>
                         <li><strong>UX/UI Design Certification Cousera</strong> - Interaction Design Foundation</li>
                     </ul>
@@ -341,7 +339,9 @@ function showWorkDetailsBlueQuiz(title, subtitle, description, year) {
             </div>
         </div>
         <div class="work-info">
-            <p class="work-description">The quiz includes multiple-choice questions, a timer, and instant feedback for each answer. The design uses Chelsea FC's signature blue color palette and football-themed graphics to create an immersive experience for fans.</p>
+            <p class="work-description">
+                <a href="https://ha0121.github.io/BluesQuiz-Chelsea/" target="_blank" style="color:#fff;font-weight:bold;text-decoration:underline;font-size:1.4em;">Try the Blue Quiz - Chelsea FC X FPT DEMO here!</a>
+            </p>
         </div>
     `;
     const workDetails = document.querySelector('.work-details');
