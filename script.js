@@ -19,7 +19,9 @@ function preloadImages() {
         'img/zoom in.png',
         'img/3333.png',
         'img/1.png',
-        'img/2222.png'
+        'img/2222.png',
+        'img/chelsea-page.png'
+
     ];
     images.forEach(src => {
         const img = new Image();
