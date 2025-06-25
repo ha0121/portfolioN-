@@ -340,7 +340,7 @@ function showWorkDetailsBlueQuiz(title, subtitle, description, year) {
         </div>
         <div class="work-info">
             <p class="work-description">
-                <a href="https://ha0121.github.io/BluesQuiz-Chelsea/" target="_blank" style="color:#fff;font-weight:bold;text-decoration:underline;font-size:1.4em;">Try the Blue Quiz - Chelsea FC X FPT DEMO here!</a>
+                <a href="https://ha0121.github.io/BluesQuiz-Chelsea/" target="_blank" class="blue-quiz-link">Try the Blue Quiz - Chelsea FC X FPT here!</a>
             </p>
         </div>
     `;
