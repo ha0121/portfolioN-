@@ -124,7 +124,7 @@ function showAbout() {
                     <h3 class="about-subtitle">EDUCATION</h3>
                     <ul class="about-list">
                         <li><strong></strong>2021-2024</li>
-                        <li><strong>Information Technology</strong> - SaiGon Technology University</li>I
+                        <li><strong>Information Technology</strong> - SaiGon Technology University</li>
                         <li><strong></strong>2023</li>
                         <li><strong>UX/UI Design Certification Cousera</strong> - Interaction Design Foundation</li>
                     </ul>
