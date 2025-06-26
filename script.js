@@ -60,10 +60,10 @@ function showWork() {
                     <div class="card-year">2025</div>
                 </div>
             </div>
-            <div class="card" onclick="showWorkDetails('Stripe Application', 'Mobile App', '', '2024')">
-                <img class="card-image" src="img/Frame 4.jpg" alt="Stripe Application">
+            <div class="card" onclick="showWorkDetails('Zeta Application', 'Mobile App', '', '2024')">
+                <img class="card-image" src="img/Frame 4.jpg" alt="Zeta Application">
                 <div class="card-details">
-                    <div class="card-title">Stripe Application</div>
+                    <div class="card-title">Zeta Application</div>
                     <div class="card-subtitle">Mobile App</div>
                     <div class="card-description">
                         A modern payment platform UI for food delivery, driver services, and grocery shipping. Focused on seamless user experience and clean, bold visuals.
@@ -162,8 +162,8 @@ function showWorkDetails(title, subtitle, description, year) {
             </div>
             <div class="work-info">
                 <p class="work-subtitle">${subtitle}</p>
-                <h2 class="work-title">STRIPE APPLICATION</h2>
-                <p class="work-description">Stripe Application is a popular payment processing platform that can be used to integrate payments into various applications, including food delivery, driver services, and grocery shipping.</p>
+                <h2 class="work-title">ZETA APPLICATION</h2>
+                <p class="work-description">Zeta Application is a popular payment processing platform that can be used to integrate payments into various applications, including food delivery, driver services, and grocery shipping.</p>
                 <div class="work-meta">
                     <p><strong>Year:</strong> 2024</p>
                     <p><strong>Tools:</strong> Figma, Adobe Photoshop</p>
