@@ -52,7 +52,7 @@ body {
 }
 
 .header-title {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 700;
     margin-bottom: 5px;
 }
@@ -554,6 +554,52 @@ body {
     z-index: 1101;
 }
 
+/* Mode toggle circle button - border white with opacity, solid and inner circle on hover only */
+.mode-toggle-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.4);
+  background: var(--sidebar-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  outline: none;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+.mode-toggle-btn .inner-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 0.18s;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.mode-toggle-btn:hover {
+  background: var(--menu-hover-bg);
+  border-color: #fff;
+}
+.mode-toggle-btn:hover .inner-circle {
+  opacity: 1;
+}
+.mode-toggle-btn:focus {
+  background: var(--sidebar-bg);
+  border-color: rgba(255,255,255,0.4);
+}
+[data-theme="light"] .mode-toggle-btn .inner-circle {
+  background: #222;
+}
+
 /* Responsive for mobile/tablet */
 @media (max-width: 768px) {
     .container {
@@ -880,6 +926,25 @@ body {
 }
 [data-theme="light"] .slider:before {
     background: #222;
+}
+
+/* Grid background for body */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+body {
+  position: relative;
+  z-index: 1;
 }
 
 body, .sidebar, .card, .about-left, .about-section, .work-info-fullscreen {
