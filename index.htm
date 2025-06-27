@@ -19,15 +19,16 @@
         <aside class="sidebar">
             <!-- Close button for mobile sidebar -->
             <button id="close-sidebar">&times;</button>
-            <!-- Light/Dark mode toggle placed above name -->
-            <div class="mode-toggle-container" style="margin-bottom: 18px;">
-                <label class="toggle-switch">
-                    <input type="checkbox" id="mode-toggle-switch" aria-label="Toggle light/dark mode">
-                    <span class="slider"></span>
-                </label>
-                <span id="mode-toggle-label" style="margin-left:10px;font-size:14px;">Dark Mode</span>
+
+            <div class="footer-links" style="margin-top:0; padding-top:0;">
+                <a href="mailto:haonguyenanh03@gmail.com" class="footer-link">EMAIL</a>
+                <div class="footer-divider">/</div>
+                <a href="https://www.linkedin.com/in/nguy%E1%BB%85n-anh-h%C3%A0o-4302a9223/" target="_blank" class="footer-link">LinkedIn</a>
+                <div class="footer-divider">/</div>
+                <a href="img/CV-NGUYEN-ANH-HAO-UX-UI-DESIGNER.pdf" target="_blank" class="footer-link">Resumé</a>
             </div>
-            <h1 class="header-title">HAO NGUYEN</h1>
+
+            <h1 class="header-title" id="animated-title">HAO NGUYEN</h1>
             <p class="header-subtitle">
                 Ho Chi Minh City-based product designer / UX/UI designer. I build things that (hopefully) encourage people to lead more thoughtful lives.
             </p>
@@ -47,6 +48,13 @@
                         <span class="menu-subtext">Learn more about me</span>
                     </div>
                 </div>
+                <div class="menu-item" data-section="game" draggable="true" onclick="showGame()">
+                    <img src="img/2000's spider-man game icon.jpg" alt="Game Icon" class="menu-icon">
+                    <div class="menu-text">
+                        GAME PROJECT
+                        <span class="menu-subtext">Coming soon!</span>
+                    </div>
+                </div>
             </nav>
             
             <!-- Spotify Playlist moved here -->
@@ -54,75 +62,19 @@
                 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0BFqbDnUs4LFfNIAulZGhA?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
 
-            <div class="footer-links">
-                <a href="mailto:haonguyenanh03@gmail.com" class="footer-link">EMAIL</a>
-                <div class="footer-divider">/</div>
-                <a href="https://www.linkedin.com/in/nguy%E1%BB%85n-anh-h%C3%A0o-4302a9223/" target="_blank" class="footer-link">LinkedIn</a>
-                <div class="footer-divider">/</div>
-                <a href="img/CV-NGUYEN-ANH-HAO-UX-UI-DESIGNER.pdf" target="_blank" class="footer-link">Resumé</a>
+            <div style="flex:1 1 auto;"></div>
+            <div class="mode-toggle-container" style="margin: 18px 0 0 0; text-align:center;">
+                <button id="mode-toggle-btn" aria-label="Toggle light/dark mode" class="mode-toggle-btn">
+                    <span class="inner-circle"></span>
+                </button>
+                <span id="mode-toggle-label" style="margin-left:10px;font-size:14px;">Dark Mode</span>
             </div>
-            <div class="footer-copy">©2025 Hao Nguyen</div>
+            <div class="footer-copy" style="margin-bottom:0;">©2025 Hao Nguyen</div>
         </aside>
         <main id="main-content" class="work-section">
         </main>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Khởi tạo drag and drop khi DOM ready
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.initMenuDragDrop) window.initMenuDragDrop();
-
-            // Responsive sidebar toggle logic
-            const sidebar = document.querySelector('.sidebar');
-            const toggleBtn = document.getElementById('toggle-sidebar');
-            const closeBtn = document.getElementById('close-sidebar');
-            function showSidebar() {
-                sidebar.style.display = 'flex';
-            }
-            function hideSidebar() {
-                sidebar.style.display = 'none';
-            }
-            if (toggleBtn) toggleBtn.addEventListener('click', showSidebar);
-            if (closeBtn) closeBtn.addEventListener('click', hideSidebar);
-
-            // Hide sidebar on mobile by default
-            function handleResize() {
-                if (window.innerWidth <= 768) {
-                    sidebar.style.display = 'none';
-                } else {
-                    sidebar.style.display = 'flex';
-                }
-            }
-            window.addEventListener('resize', handleResize);
-            handleResize();
-        });
-
-        // Light/Dark mode toggle logic (switch style)
-        document.addEventListener('DOMContentLoaded', function() {
-            const modeSwitch = document.getElementById('mode-toggle-switch');
-            const modeLabel = document.getElementById('mode-toggle-label');
-            function setMode(mode) {
-                if (mode === 'light') {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    modeSwitch.checked = true;
-                    modeLabel.textContent = 'Light Mode';
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    modeSwitch.checked = false;
-                    modeLabel.textContent = 'Dark Mode';
-                }
-                localStorage.setItem('theme', mode);
-            }
-            if (modeSwitch) {
-                modeSwitch.addEventListener('change', function() {
-                    setMode(modeSwitch.checked ? 'light' : 'dark');
-                });
-            }
-            // Init mode from localStorage or default to dark
-            const saved = localStorage.getItem('theme');
-            setMode(saved === 'light' ? 'light' : 'dark');
-        });
-    </script>
 </body>
 </html>
