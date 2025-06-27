@@ -461,3 +461,167 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Responsive sidebar toggle logic
+function handleSidebarToggle() {
+    const sidebar = document.querySelector('.sidebar');
+    const toggleBtn = document.getElementById('toggle-sidebar');
+    const closeBtn = document.getElementById('close-sidebar');
+    function showSidebar() {
+        sidebar.style.display = 'flex';
+    }
+    function hideSidebar() {
+        sidebar.style.display = 'none';
+    }
+    if (toggleBtn) toggleBtn.addEventListener('click', showSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', hideSidebar);
+    function handleResize() {
+        if (window.innerWidth <= 768) {
+            sidebar.style.display = 'none';
+        } else {
+            sidebar.style.display = 'flex';
+        }
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+}
+document.addEventListener('DOMContentLoaded', handleSidebarToggle);
+
+// Light/Dark mode toggle logic (circle button style, no icon)
+document.addEventListener('DOMContentLoaded', function() {
+    const modeBtn = document.getElementById('mode-toggle-btn');
+    const modeLabel = document.getElementById('mode-toggle-label');
+    function setMode(mode) {
+        if (mode === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            modeLabel.textContent = 'Light Mode';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            modeLabel.textContent = 'Dark Mode';
+        }
+        localStorage.setItem('theme', mode);
+    }
+    if (modeBtn) {
+        modeBtn.addEventListener('click', function() {
+            const current = document.documentElement.getAttribute('data-theme');
+            setMode(current === 'light' ? 'dark' : 'light');
+        });
+    }
+    // Init mode from localStorage or default to dark
+    const saved = localStorage.getItem('theme');
+    setMode(saved === 'light' ? 'light' : 'dark');
+});
+
+// Animation: Glitch/Noise effect and text swap for header-title
+document.addEventListener('DOMContentLoaded', function() {
+    const titleEl = document.getElementById('animated-title');
+    const titles = ['HAO NGUYEN', 'PRODUCT DESIGNER'];
+    let currentTitle = 0;
+    function glitchText(text) {
+        // Simple glitch: randomly replace a few chars with noise chars
+        const noiseChars = '!@#$%^&*()_+-=~<>?/|';
+        let arr = text.split('');
+        for (let i = 0; i < 2; i++) {
+            const idx = Math.floor(Math.random() * arr.length);
+            arr[idx] = noiseChars[Math.floor(Math.random() * noiseChars.length)];
+        }
+        return arr.join('');
+    }
+    function animateTitleSwap() {
+        let steps = 0;
+        const original = titles[currentTitle];
+        const next = titles[1 - currentTitle];
+        // Glitch out
+        const glitchInterval = setInterval(() => {
+            titleEl.textContent = glitchText(original);
+            steps++;
+            if (steps > 7) {
+                clearInterval(glitchInterval);
+                // Glitch in
+                let inSteps = 0;
+                const inInterval = setInterval(() => {
+                    titleEl.textContent = glitchText(next);
+                    inSteps++;
+                    if (inSteps > 5) {
+                        clearInterval(inInterval);
+                        titleEl.textContent = next;
+                        currentTitle = 1 - currentTitle;
+                    }
+                }, 60);
+            }
+        }, 50);
+    }
+    setInterval(animateTitleSwap, 3200);
+});
+
+// Add handler for GAME menu item
+document.addEventListener('DOMContentLoaded', function() {
+    const gameMenu = document.querySelector('.menu-item[data-section="game"]');
+    if (gameMenu) {
+        gameMenu.style.pointerEvents = 'none';
+        gameMenu.style.opacity = '0.5';
+        gameMenu.style.cursor = 'not-allowed';
+    }
+});
+
+function showGame() {
+    setActiveMenu('game');
+    document.getElementById('main-content').innerHTML = `
+        <h2 class="section-title">MINI GAME</h2>
+        <div style="padding:40px 0;text-align:center;">
+            <p style="font-size:18px;opacity:0.7;">Coming soon!</p>
+            <img src="img/2000's spider-man game icon.jpg" alt="Game" style="width:120px;margin:24px auto;display:block;filter:drop-shadow(0 2px 8px #0002);">
+        </div>
+    `;
+}
+
+// Custom cursor effect
+document.addEventListener('DOMContentLoaded', function() {
+    const cursor = document.createElement('div');
+    cursor.id = 'custom-cursor';
+    document.body.appendChild(cursor);
+    Object.assign(cursor.style, {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '24px',
+        height: '24px',
+        borderRadius: '50%',
+        border: '2px solid #fff',
+        background: 'rgba(255,255,255,0.08)',
+        pointerEvents: 'none',
+        zIndex: '9999',
+        transform: 'translate(-50%, -50%)',
+        transition: 'background 0.18s, border-color 0.18s, transform 0.08s',
+        mixBlendMode: 'difference',
+    });
+    document.addEventListener('mousemove', function(e) {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+    // Grow cursor on interactive elements
+    const interactive = ['a', 'button', '.menu-item', '.mode-toggle-btn'];
+    document.addEventListener('mouseover', function(e) {
+        if (interactive.some(sel => e.target.closest(sel))) {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            cursor.style.background = 'rgba(255,255,255,0.18)';
+            cursor.style.borderColor = '#fff';
+        } else {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursor.style.background = 'rgba(255,255,255,0.08)';
+            cursor.style.borderColor = '#fff';
+        }
+    });
+    document.addEventListener('mousedown', function() {
+        cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        cursor.style.background = 'rgba(255,255,255,0.28)';
+    });
+    document.addEventListener('mouseup', function() {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursor.style.background = 'rgba(255,255,255,0.18)';
+    });
+    document.addEventListener('mouseout', function() {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursor.style.background = 'rgba(255,255,255,0.08)';
+    });
+});
+
