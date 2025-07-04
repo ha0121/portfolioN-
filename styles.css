@@ -55,6 +55,9 @@ body {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 5px;
+    font-family: 'Phudu', cursive, sans-serif !important;
+    font-variation-settings: 'wght' 500;
+    font-weight: 500 !important;
 }
 
 .header-subtitle {
@@ -189,6 +192,9 @@ body {
     color: var(--text-color);
     letter-spacing: 0.01em;
     text-align: left;
+    font-family: 'Phudu', cursive, sans-serif !important;
+    font-variation-settings: 'wght' 500;
+    font-weight: 500 !important;
 }
 
 .card-subtitle {
@@ -741,7 +747,10 @@ body {
     font-size: 32px;
     font-weight: 600;
     margin-bottom: 10px;
-    padding-bottom: 10px; /* Khoảng cách giữa tiêu đề và border */
+    padding-bottom: 10px;
+    font-family: 'Phudu', cursive, sans-serif !important;
+    font-variation-settings: 'wght' 500;
+    font-weight: 500 !important;
 }
 
 .work-subtitle {
@@ -950,7 +959,8 @@ body {
 body, .sidebar, .card, .about-left, .about-section, .work-info-fullscreen {
     background: var(--bg-color) !important;
     color: var(--text-color) !important;
-    text-transform: uppercase; /* Viết hoa toàn bộ text cho Light Mode */
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace !important;
 }
 [data-theme="light"] body,
 [data-theme="light"] .sidebar,
@@ -960,74 +970,21 @@ body, .sidebar, .card, .about-left, .about-section, .work-info-fullscreen {
 [data-theme="light"] .work-info-fullscreen {
     background: var(--bg-color) !important;
     color: var(--text-color) !important;
-    text-transform: uppercase; /* Viết hoa toàn bộ text cho Light Mode */
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace !important;
 }
-[data-theme="light"] .sidebar {
-    background: var(--sidebar-bg) !important;
+
+.header-title, .card-title, .work-title {
+    font-family: 'Phudu', cursive, sans-serif !important;
+    font-variation-settings: 'wght' 500;
+    font-weight: 500 !important;
 }
-[data-theme="light"] .card {
-    background: var(--card-bg) !important;
-    color: #222 !important;
-}
+[data-theme="light"] .header-title,
 [data-theme="light"] .card-title,
-[data-theme="light"] .card-subtitle,
-[data-theme="light"] .card-description,
-[data-theme="light"] .card-year {
-    color: #222 !important;
-}
-[data-theme="light"] .card-details {
-    color: #222 !important;
-}
-[data-theme="light"] .about-section {
-    background: #fff !important;
-    border-color: #eee !important;
-    color: #222 !important;
-}
-[data-theme="light"] .about-left {
-    background: #f3f3f3 !important;
-    border-color: #eee !important;
-    color: #222 !important;
-}
-[data-theme="light"] .about-list,
-[data-theme="light"] .about-list li,
-[data-theme="light"] .about-list li strong,
-[data-theme="light"] .about-subtitle,
-[data-theme="light"] .about-list a {
-    color: #222 !important;
-}
-[data-theme="light"] .about-list a:hover {
-    color: #0072c6 !important;
-    text-decoration: underline;
-}
-[data-theme="light"] .footer-link,
-[data-theme="light"] .footer-divider,
-[data-theme="light"] .footer-copy {
-    color: #333 !important;
-    opacity: 0.8;
-}
-[data-theme="light"] .mode-toggle-btn {
-    background: #f3f3f3 !important;
-    color: #222 !important;
-    border-color: #bbb !important;
-}
-[data-theme="light"] .mode-toggle-btn:hover {
-    background: #ececec !important;
-    color: #111 !important;
-    border-color: #aaa !important;
-}
-.work-title,
-.work-subtitle,
-.work-description,
-.work-meta,
-.work-meta p {
-    color: var(--text-color) !important;
-}
-[data-theme="light"] .work-title,
-[data-theme="light"] .work-subtitle,
-[data-theme="light"] .work-description,
-[data-theme="light"] .work-meta,
-[data-theme="light"] .work-meta p {
-    color: #222 !important;
+[data-theme="light"] .work-title {
+    font-family: 'Phudu', cursive, sans-serif !important;
+    font-variation-settings: 'wght' 500;
+    font-weight: 500 !important;
 }
 
 /* Loader Animation */
