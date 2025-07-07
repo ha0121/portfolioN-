@@ -46,6 +46,7 @@ function setActiveMenu(section) {
 function showWork() {
     localStorage.setItem('currentSection', 'work');
     setActiveMenu('work');
+    document.title = 'Work | Hao Nguyen Portfolio';
     document.getElementById('main-content').innerHTML = `
         <h2 class="section-title">SELECT WORK</h2>
         <div class="card-container">
@@ -100,6 +101,7 @@ function showWork() {
 function showAbout() {
     localStorage.setItem('currentSection', 'about');
     setActiveMenu('about');
+    document.title = 'About | Hao Nguyen Portfolio';
     document.getElementById('main-content').innerHTML = `
         <h2 class="section-title">ABOUT ME</h2>
         <div class="about-content">
@@ -154,6 +156,7 @@ function showAbout() {
 // Section details logic (unchanged)
 function showWorkDetails(title, subtitle, description, year) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.title = `${title} | Hao Nguyen Portfolio`;
     document.getElementById('main-content').innerHTML = `
         <div class="work-details">
             <div class="back-icon" onclick="showWork()">&#60;</div>
@@ -204,6 +207,7 @@ function showWorkDetails(title, subtitle, description, year) {
 
 function showWorkDetails2(title, subtitle, description, year) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.title = `${title} | Hao Nguyen Portfolio`;
     document.getElementById('main-content').innerHTML = `
         <div class="work-details">
             <div class="back-icon" onclick="showWork()">&#60;</div>
@@ -276,6 +280,7 @@ function showWorkDetails2(title, subtitle, description, year) {
     workDetails.classList.add('fade-in'); // Thêm lớp để kích hoạt animation
 }
 function showWorkDetails3(title, subtitle, description, year) {
+    document.title = `${title} | Hao Nguyen Portfolio`;
     document.getElementById('main-content').innerHTML = `
         <div class="work-details">
             <div class="back-icon" onclick="showWork()">&#60;</div>
@@ -319,6 +324,7 @@ function showWorkDetails3(title, subtitle, description, year) {
 // Add Blue Quiz - Chelsea FC X FPT details popup
 function showWorkDetailsBlueQuiz(title, subtitle, description, year) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.title = `${title} | Hao Nguyen Portfolio`;
     document.getElementById('main-content').innerHTML = `
         <div class="work-details">
             <div class="back-icon" onclick="showWork()">&#60;</div>
