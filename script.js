@@ -583,45 +583,71 @@ document.addEventListener('DOMContentLoaded', function() {
         position: 'fixed',
         top: '0',
         left: '0',
-        width: '24px',
+        width: '24px', // Nhỏ khi chưa hover
         height: '24px',
         borderRadius: '50%',
         border: '2px solid #fff',
         background: 'rgba(255,255,255,0.08)',
         pointerEvents: 'none',
         zIndex: '9999',
-        transform: 'translate(-50%, -50%)',
-        transition: 'background 0.18s, border-color 0.18s, transform 0.08s',
+        transform: 'translate(-50%, -50%) scale(1)',
+        transition: 'background 0.18s, border-color 0.18s, transform 0.08s, width 0.18s, height 0.18s',
         mixBlendMode: 'difference',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     });
+    // Thêm SVG icon con mắt vào trong cursor
+    const eyeIcon = document.createElement('div');
+    eyeIcon.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:auto;"><ellipse cx="12" cy="12" rx="8" ry="5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="2.5" fill="white"/></svg>`;
+    eyeIcon.style.position = 'absolute';
+    eyeIcon.style.top = '50%';
+    eyeIcon.style.left = '50%';
+    eyeIcon.style.transform = 'translate(-50%, -50%)';
+    eyeIcon.style.pointerEvents = 'none';
+    eyeIcon.style.display = 'none'; // Ẩn mặc định
+    eyeIcon.id = 'cursor-eye-icon';
+    cursor.appendChild(eyeIcon);
     document.addEventListener('mousemove', function(e) {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
     });
     // Grow cursor on interactive elements
-    const interactive = ['a', 'button', '.menu-item', '.mode-toggle-btn'];
+    // Bổ sung .card và .back-icon vào danh sách selector
+    const interactive = ['a', 'button', '.menu-item', '.mode-toggle-btn', '.card', '.back-icon'];
     document.addEventListener('mouseover', function(e) {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
         if (interactive.some(sel => e.target.closest(sel))) {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            cursor.style.width = '40px';
+            cursor.style.height = '40px';
+            cursor.style.transform = 'translate(-50%, -50%) scale(1.2)';
             cursor.style.background = 'rgba(255,255,255,0.18)';
-            cursor.style.borderColor = '#fff';
+            cursor.style.borderColor = isLight ? '#222' : '#fff';
+            // Đổi màu icon con mắt
+            const svg = eyeIcon.querySelector('svg');
+            if (svg) {
+                const ellipse = svg.querySelector('ellipse');
+                const circle = svg.querySelector('circle');
+                if (ellipse) ellipse.setAttribute('stroke', isLight ? '#222' : '#fff');
+                if (circle) circle.setAttribute('fill', isLight ? '#222' : '#fff');
+            }
+            eyeIcon.style.display = 'block'; // Hiện icon con mắt
         } else {
+            cursor.style.width = '24px';
+            cursor.style.height = '24px';
             cursor.style.transform = 'translate(-50%, -50%) scale(1)';
             cursor.style.background = 'rgba(255,255,255,0.08)';
-            cursor.style.borderColor = '#fff';
+            cursor.style.borderColor = isLight ? '#222' : '#fff';
+            // Đổi màu icon con mắt về mặc định
+            const svg = eyeIcon.querySelector('svg');
+            if (svg) {
+                const ellipse = svg.querySelector('ellipse');
+                const circle = svg.querySelector('circle');
+                if (ellipse) ellipse.setAttribute('stroke', isLight ? '#222' : '#fff');
+                if (circle) circle.setAttribute('fill', isLight ? '#222' : '#fff');
+            }
+            eyeIcon.style.display = 'none'; // Ẩn icon con mắt
         }
-    });
-    document.addEventListener('mousedown', function() {
-        cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
-        cursor.style.background = 'rgba(255,255,255,0.28)';
-    });
-    document.addEventListener('mouseup', function() {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        cursor.style.background = 'rgba(255,255,255,0.18)';
-    });
-    document.addEventListener('mouseout', function() {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-        cursor.style.background = 'rgba(255,255,255,0.08)';
     });
 });
 
