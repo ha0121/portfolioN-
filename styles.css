@@ -1,3 +1,24 @@
+/* Mobile tag style giống website tag */
+.card-tag, .website-tag {
+  display: inline-block;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  padding: 2px 14px 2px 14px;
+  background: #fff;
+  color: #111;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  text-align: center;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+[data-theme="light"] .card-tag, [data-theme="light"] .website-tag {
+  border-color: #222;
+  color: #111;
+  background: #fff;
+}
 /* Color variables for dark mode */
 :root {
     --bg-color: #141414;
