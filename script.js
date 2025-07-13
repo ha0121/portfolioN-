@@ -1,1058 +1,658 @@
-/* Mobile tag style giống website tag */
-.card-tag, .website-tag {
-  display: inline-block;
-  border: 2px solid #fff;
-  border-radius: 999px;
-  padding: 2px 14px 2px 14px;
-  background: #fff;
-  color: #111;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 22px;
-  text-align: center;
-  min-width: 0;
-  box-sizing: border-box;
+// Loading overlay and image preload
+window.onload = function() {
+    // Hide loading overlay when everything is loaded
+    const overlay = document.getElementById('loading-overlay');
+    if (overlay) {
+        overlay.style.opacity = '0';
+        setTimeout(() => { overlay.style.display = 'none'; }, 400);
+    }
+    preloadImages();
+};
+
+// Preload images for faster UX
+function preloadImages() {
+    const images = [
+        'img/img-project1.jpg',
+        'img/Frame 4.jpg',
+        'img/12.png',
+        'img/12345.jpg',
+        'img/zoom in.png',
+        'img/3333.png',
+        'img/1.png',
+        'img/2222.png'
+    ];
+    images.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
 }
 
-[data-theme="light"] .card-tag, [data-theme="light"] .website-tag {
-  border-color: #222;
-  color: #111;
-  background: #fff;
-}
-/* Color variables for dark mode */
-:root {
-    --bg-color: #141414;
-    --sidebar-bg: #141414;
-    --text-color: #fff;
-    --card-bg: #1C1C1C;
-    --border-color: rgba(255,255,255,0.1);
-    --menu-hover-bg: rgba(255,255,255,0.1);
-    --menu-hover-border: rgba(255,255,255,0.5);
-    --footer-link: rgba(255,255,255,0.75);
-    --footer-divider: rgba(255,255,255,0.5);
-    --footer-copy: 0.5;
+// Section navigation logic
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.style.display = sidebar.style.display === 'none' || sidebar.style.display === '' ? 'flex' : 'none';
 }
 
-body {
-    margin: 0;
-    font-family: 'IBM Plex Mono', monospace;
-    background: var(--bg-color);
-    color: var(--text-color);
-    text-transform: uppercase; /* Viết hoa toàn bộ text cho Dark Mode */
+function setActiveMenu(section) {
+    document.querySelectorAll('.menu-item').forEach(item => {
+        if (item.dataset.section === section) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
 }
 
-.container {
-    display: flex;
-    height: 100vh;
-    flex-direction: row;
-    position: relative;
+function showWork() {
+    localStorage.setItem('currentSection', 'work');
+    setActiveMenu('work');
+    document.title = 'Work | Hao Nguyen Portfolio';
+    document.getElementById('main-content').innerHTML = `
+        <h2 class="section-title">SELECT WORK</h2>
+        <div class="card-container">
+            <div class="card" onclick="showWorkDetailsBlueQuiz('Blue Quiz - Chelsea FC X FPT', 'Web Application', '', '2024')">
+                <img class="card-image" src="img/logo-chelsea.png" alt="Blue Quiz - Chelsea FC X FPT">
+                <div class="card-details">
+                    <div class="card-title">Blue Quiz - Chelsea FC X FPT</div>
+                    <div class="card-subtitle">Web Application</div>
+                    <div class="card-description">
+                        A football quiz web app for Chelsea FC fans, built for the FPT event. Features interactive questions, real-time scoring, and a Chelsea-inspired UI.
+                    </div>
+                    <div class="card-year">2025</div>
+                </div>
+            </div>
+            <div class="card" onclick="showWorkDetails('Zeta Application', 'Mobile App', '', '2024')">
+                <img class="card-image" src="img/Frame 4.jpg" alt="Zeta Application">
+                <div class="card-details">
+                    <div class="card-title">Zeta Application</div>
+                    <div class="card-subtitle">Mobile App</div>
+                    <div class="card-description">
+                        A modern payment platform UI for food delivery, driver services, and grocery shipping. Focused on seamless user experience and clean, bold visuals.
+                    </div>
+                    <div class="card-year">2024</div>
+                </div>
+            </div>
+            <div class="card" onclick="showWorkDetails2('Job & Recruitment', 'Mobile App', '', '2024')">
+                <img class="card-image" src="img/jd2.png" alt="Job & Recruitment">
+                <div class="card-details">
+                    <div class="card-title">Job & Recruitment</div>
+                    <div class="card-subtitle">Mobile App</div>
+                    <div class="card-description">
+                        A job search app for Vietnam, connecting job seekers and employers with a fast, flexible, and intuitive interface. Includes research, personas, and prototype.
+                    </div>
+                    <div class="card-year">2024</div>
+                </div>
+            </div>
+            <div class="card" onclick="showWorkDetails3('Fukuoka SoftBank HAWKS Gaming', 'Website', '', '2024')">
+                <img class="card-image" src="img/japan-team.png" alt="Fukuoka SoftBank HAWKS Gaming">
+                <div class="card-details">
+                    <div class="card-title">Fukuoka SoftBank HAWKS Gaming</div>
+                    <div class="card-subtitle">Website</div>
+                    <div class="card-description">
+                        Esports team website for the Fukuoka SoftBank Hawks. Vibrant, energetic, and designed to promote e-sports and team spirit.
+                    </div>
+                    <div class="card-year">2024</div>
+                </div>
+            </div>
+        </div>
+    `;
 }
 
-.sidebar {
-    width: 300px;
-    padding: 20px;
-    background: var(--sidebar-bg);
-    display: flex;
-    flex-direction: column;
-    border-right: 2px solid var(--border-color);
-    transition: background 0.3s, border-color 0.3s, transform 0.3s cubic-bezier(.4,2,.6,1), opacity 0.3s;
-    opacity: 1;
-    transform: translateX(0);
-    position: relative;
+function showAbout() {
+    localStorage.setItem('currentSection', 'about');
+    setActiveMenu('about');
+    document.title = 'About | Hao Nguyen Portfolio';
+    document.getElementById('main-content').innerHTML = `
+        <h2 class="section-title">ABOUT ME</h2>
+        <div class="about-content">
+            <div class="about-left">
+                <img src="img/avatar1.jpg" alt="A description of the image" class="about-image">
+                <p style="font-weight: 700; font-size: 18px;">HI, I'M HAO 🤟🏼</p>
+                <p style="font-weight: 700; font-size: 18px;">I'M CURRENTLY A FREELANCE DESIGNER</p>
+                <p>I specialize in building thoughtful and user-centered digital experiences that encourage people to lead more intentional lives.</p>
+                <p>With a background in both design and technology, I bring a unique perspective to every project I work on. My goal is to create products that are not only functional but also meaningful.</p>
+            </div>
+            <div class="about-right">
+                <div class="about-section">
+                    <h3 class="about-subtitle">EXPERIENCE</h3>
+                    <ul class="about-list">
+                        <li><strong>2024-now</strong></li>
+                        <li><strong>Freelancer</strong></li>
+                        <li><strong>10/2023-12/2023</strong></li>
+                        <li><strong>Intern UX/UI Designer at ITBee Soltuion</strong></li>
+                    </ul>
+                </div>
+                <div class="about-section">
+                    <h3 class="about-subtitle">EDUCATION</h3>
+                    <ul class="about-list">
+                        <li><strong></strong>2021-2024</li>
+                        <li><strong>Information Technology</strong> - SaiGon Technology University</li>
+                        <li><strong></strong>2023</li>
+                        <li><strong>UX/UI Design Certification Cousera</strong> - Interaction Design Foundation</li>
+                    </ul>
+                </div>
+                <div class="about-section">
+                    <h3 class="about-subtitle">SKILLS</h3>
+                    <ul class="about-list">
+                        <li><strong>Design Tools:</strong> Figma, Adobe XD, Photoshop, Illustrator</li>
+                        <li><strong>Frontend Development:</strong> HTML, CSS, Reactjs(Basic)</li>
+                        <li><strong>User Research:</strong> Usability Testing, User Interviews, Persona Creation</li>
+                        <li><strong>Soft Skills:</strong> Collaboration, Communication, Problem Solving</li>
+                    </ul>
+                </div>
+                <div class="about-section">
+                    <h3 class="about-subtitle">CONTACT</h3>
+                    <ul class="about-list">
+                        <li><strong>Email:</strong>haonguyenanh03@gmail.com</li>
+                        <li><strong>Phone:</strong>0967773200</li>
+                        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nguy%E1%BB%85n-anh-h%C3%A0o-4302a9223/" target="_blank">linkedin.com/in/haonguyen03</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    `;
 }
 
-.header-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 5px;
-    font-family: 'Phudu', cursive, sans-serif !important;
-    font-variation-settings: 'wght' 500;
-    font-weight: 500 !important;
+// Section details logic (unchanged)
+function showWorkDetails(title, subtitle, description, year) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.title = `${title} | Hao Nguyen Portfolio`;
+    document.getElementById('main-content').innerHTML = `
+        <div class="work-details">
+            <div class="back-icon" onclick="showWork()">&#60;</div>
+            <div class="work-image">
+                <img src="img/img-project1.jpg" alt="${title}" class="full-size-image">
+            </div>
+            <div class="work-info">
+                <p class="work-subtitle">${subtitle}</p>
+                <h2 class="work-title">ZETA APPLICATION</h2>
+                <p class="work-description">Zeta Application is a popular payment processing platform that can be used to integrate payments into various applications, including food delivery, driver services, and grocery shipping.</p>
+                <div class="work-meta">
+                    <p><strong>Year:</strong> 2024</p>
+                    <p><strong>Tools:</strong> Figma, Adobe Photoshop</p>
+                </div>
+            </div>
+            <div class="work-image">
+                <img src="img/Frame 4.jpg" alt="${title}" class="full-size-image">
+            </div>
+        </div>
+        <div class="work-info">
+            <p class="work-description">Home & Searching can enhance user experience by highlighting popular dishes, adding a "Favorites" section, and offering personalized suggestions, while improving the search with smart filters and quick categories for easier and faster meal selection.</p>
+        </div>
+        <div class="work-image">
+            <img src="img/12.png" alt="${title}" class="full-size-image">
+        </div>
+        <div class="work-info">
+            <p class="work-description">Order Place in the Stripe food delivery app displays essential information such as order details, pickup location with GPS directions, estimated times for pickup and delivery, contact options for customers and restaurants, earnings for the current order, and delivery status to help drivers manage their tasks efficiently.</p>
+        </div>
+        <div class="work-image">
+            <img src="img/12345.jpg" alt="${title}" class="full-size-image">
+            <img src="img/123456.png" alt="${title}" class="full-size-image">
+        </div>
+        <div class="work-info">
+            <p class="work-description">Order for Delivery & and more screen in the Stripe food delivery app features an order summary, delivery options, payment methods, promotions, special instructions, and estimated delivery time, all aimed at providing a seamless ordering experience for users while ensuring they have everything needed before confirming their order.</p>
+        </div>
+        <div class="work-image">
+            <img src="img/3333.png" alt="${title}" class="full-size-image">
+            <img src="img/1.png" alt="${title}" class="full-size-image">
+            <img src="img/2222.png" alt="${title}" class="full-size-image">  
+        </div>
+    `;
+    const workDetails = document.querySelector('.work-details');
+    workDetails.style.display = 'block'; // Hiển thị chi tiết
+    workDetails.classList.add('fade-in'); // Thêm lớp để kích hoạt animation
+
+
 }
 
-.header-subtitle {
-    font-size: 14px;
-    color: var(--text-color);
-    opacity: 0.7;
-    margin-bottom: 5px;
+function showWorkDetails2(title, subtitle, description, year) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.title = `${title} | Hao Nguyen Portfolio`;
+    document.getElementById('main-content').innerHTML = `
+        <div class="work-details">
+            <div class="back-icon" onclick="showWork()">&#60;</div>
+            <div class="work-image">
+                <img src="img/jd22.png" alt="${title}" class="full-size-image">
+            </div>
+            <div class="work-info">
+                <p class="work-subtitle">${subtitle}</p>
+                <h2 class="work-title">JOB AND RECUITMENT</h2>
+                <p class="work-description">Job & Recuitment is a job search app in Vietnam, designed to efficiently connect job seekers and employers. With JR, we commit to providing a simple, fast, and flexible job search and recruitment experience.</p>
+                <div class="work-meta">
+                    <p><strong>Year:</strong> 2024</p>
+                    <p><strong>Tools:</strong> Figma, Adobe Photoshop</p>
+                </div>
+            </div>
+            <div class="work-image">
+                <img src="img/desk-research2.png" alt="${title}" class="full-size-image">
+            </div>
+               <div class="work-info">
+            <p class="work-description">About this desk research analyzes the IT layoff wave in Vietnam, highlighting job market challenges, student difficulties, and industry trends.</p>
+        </div>
+             <div class="work-image">
+                <img src="img/desk-research.png" alt="${title}" class="full-size-image">
+            </div>
+                 <div class="work-info">
+            <p class="work-description">This research compares <strong> VietnamWorks and TopCV </strong> , highlighting their advantages and disadvantages in job searching and resume optimization for Vietnamese job seekers.</p>
+        </div>
+            <div class="work-image">
+                <img src="img/market-research.png" alt="${title}" class="full-size-image">
+            </div>
+             <div class="work-info">
+            <p class="work-description">Personas it features two personas: <strong> Alex Nguyen</strong> and <strong>Linh Tran</strong>. The personas provide insights into their professional goals, challenges, and attributes.</p>
+        </div>
+            <div class="work-image">
+                <img src="img/PERSONALS.svg" alt="${title}" class="full-size-image">
+            </div>
+        </div>
+        <div class="work-info">
+        </div>
+         <div class="work-info">
+            <p class="work-description">Color Pallette & Typography A color palette is a collection of colors that work well together. It can be used for a variety of purposes, such as designing a app.</p>
+        </div>
+        <div class="work-image">
+            <img src="img/TYPO2.svg" alt="${title}" class="full-size-image">
+        </div>
+          <div class="work-info">
+            <p class="work-description">Home Page & Searching offers personalized job recommendations and a search bar, while the search feature includes filters for location, job type, and salary. Users can sort results, apply, save jobs, and set up alerts for new postings, enhancing the overall experience.</p>
+        </div>
+         <div class="work-image">
+            <img src="img/search-jd.png" alt="${title}" class="full-size-image">
+        </div>
+         <div class="work-image">
+            <img src="img/search2-jd.png" alt="${title}" class="full-size-image">
+        </div>
+   <div class="work-info">
+            <p class="work-description">Order for Delivery & and more screen in the Stripe food delivery app features an order summary, delivery options, payment methods, promotions, special instructions, and estimated delivery time, all aimed at providing a seamless ordering experience for users while ensuring they have everything needed before confirming their order.</p>
+        </div>
+        <div class="work-image">
+            <img src="img/JD1.png" alt="${title}" class="full-size-image">
+            <img src="img/JD.png" alt="${title}" class="full-size-image">
+        </div>
+  <div class="work-info">
+            <p class="work-description">Demo Prototype</p>
+        </div>
+ <iframe class="figma-iframe" src="https://embed.figma.com/proto/pgAyL3T7JLKTGXPi3YAc5d/JOB%26RECUITMENT?page-id=81%3A538&amp;node-id=749-9068&amp;node-type=frame&amp;viewport=-20%2C122%2C0.2&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=749%3A9068&amp;show-proto-sidebar=1&amp;embed-host=share" allowfullscreen></iframe>
+        
+    `;
+    const workDetails = document.querySelector('.work-details');
+    workDetails.style.display = 'block'; // Hiển thị chi tiết
+    workDetails.classList.add('fade-in'); // Thêm lớp để kích hoạt animation
+}
+function showWorkDetails3(title, subtitle, description, year) {
+    document.title = `${title} | Hao Nguyen Portfolio`;
+    document.getElementById('main-content').innerHTML = `
+        <div class="work-details">
+            <div class="back-icon" onclick="showWork()">&#60;</div>
+            <div class="work-image">
+                <img src="img/SHG-BANNER.svg" alt="${title}" class="full-size-image">
+            </div>
+            <div class="work-info">
+                <p class="work-subtitle">${subtitle}</p>
+                <h2 class="work-title">FUKUOKA SOFTBANK HAWKS GAMING</h2>
+                <p class="work-description">Fukuoka SoftBank HAWKS Gaming HAWKS X Esport its participation in the eSports Pro League, the Fukuoka SoftBank Hawks will further promote e-sports and aim to become the world's number one entertainment company that transcends the boundaries of professional baseball teams.</p>
+                <div class="work-meta">
+                    <p><strong>Year:</strong> 2024</p>
+                    <p><strong>Tools:</strong> Figma, Adobe Photoshop</p>
+                </div>
+            </div>
+            <div class="work-image">
+                <img src="img/japan-team.png" alt="${title}" class="full-size-image">
+            </div>
+        </div>
+        <div class="work-image">
+            <img src="img/news-shg.png" alt="${title}" class="full-size-image">
+        </div>
+        <div class="work-image">
+            <img src="img/player-shg.png" alt="${title}" class="full-size-image">
+            <img src="img/profile-shg.png" alt="${title}" class="full-size-image">
+        </div>
+        <div class="work-image">
+            <img src="img/history-shg.png" alt="${title}" class="full-size-image">
+            <img src="img/sponsor-shg.png" alt="${title}" class="full-size-image">
+            
+        </div>
+
+        
+    `;
+    const workDetails = document.querySelector('.work-details');
+    workDetails.style.display = 'block'; // Hiển thị chi tiết
+    workDetails.classList.add('fade-in'); // Thêm lớp để kích hoạt animation
+
 }
 
-.menu {
-    margin: 20px 0;
+// Add Blue Quiz - Chelsea FC X FPT details popup
+function showWorkDetailsBlueQuiz(title, subtitle, description, year) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.title = `${title} | Hao Nguyen Portfolio`;
+    document.getElementById('main-content').innerHTML = `
+        <div class="work-details">
+            <div class="back-icon" onclick="showWork()">&#60;</div>
+            <div class="work-image">
+                <img src="img/logo-chelsea.png" alt="${title}" class="full-size-image">
+            </div>
+            <div class="work-info">
+                <p class="work-subtitle">${subtitle}</p>
+                <h2 class="work-title">BLUE QUIZ - CHELSEA FC X FPT</h2>
+                <p class="work-description">Blue Quiz is a web application designed for Chelsea FC fans, created for the FPT event. The app features interactive football quizzes, real-time scoring, and a Chelsea-inspired user interface. It aims to engage fans and test their knowledge about the club in a fun, competitive way.</p>
+                <div class="work-meta">
+                    <p><strong>Year:</strong> 2025</p>
+                    <p><strong>Tools:</strong> Figma, Adobe Photoshop</p>
+                </div>
+            </div>
+            <div class="work-image">
+                <img src="img/chelsea-page.png" alt="${title}" class="full-size-image">
+            </div>
+        </div>
+        <div class="work-info">
+            <p class="work-description">
+                <a href="https://ha0121.github.io/BluesQuiz-Chelsea/" target="_blank" class="blue-quiz-link">Try the Blue Quiz - Chelsea FC X FPT here!</a>
+            </p>
+        </div>
+    `;
+    const workDetails = document.querySelector('.work-details');
+    workDetails.style.display = 'block';
+    workDetails.classList.add('fade-in');
 }
 
-.menu-item {
-    display: flex;
-    font-weight: 800;
-    align-items: center;
-    gap: 8px;
-    font-size: 16px;
-    color: var(--footer-link) !important;
-    cursor: pointer;
-    margin: 20px 0;
-    transition: color 0.3s, border-color 0.3s, background 0.3s;
-    padding: 10px;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    width: 100%;
-    box-sizing: border-box;
-    background: transparent;
-}
-.menu-item:hover,
-.menu-item.active {
-    color: var(--text-color) !important;
-    background: var(--menu-hover-bg) !important;
-    border-color: var(--menu-hover-border) !important;
-}
+// Drag and drop logic for menu
+function initMenuDragDrop() {
+    const menu = document.querySelector('.menu');
+    if (!menu) return;
+    let draggedItem = null;
 
-.menu-item.dragging {
-    opacity: 0.5;
-}
-.menu-item.drag-over {
-    border: 2px dashed #ffb300;
-}
+    // Randomize menu order on first load (or if not saved)
+    const menuOrderKey = 'menuOrder';
+    let order = JSON.parse(localStorage.getItem(menuOrderKey));
+    const items = Array.from(menu.children);
 
-.menu-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 6px;
-}
-
-.menu-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-grow: 1;
-}
-
-.menu-subtext {
-    font-size: 12px;
-    color: var(--text-color);
-    opacity: 0.6;
-    margin-top: 4px;
-}
-
-.work-section {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.section-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 5px;
-    margin-left: 10px;
-    border-bottom: 2px solid rgba(85, 82, 82, 0.5);
-    padding-bottom: 20px;
-}
-
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Hiển thị 2 project trên 1 hàng */
-    gap: 40px;
-    padding: 30px 0 0 0;
-    align-items: stretch;
-}
-
-.card {
-    background: var(--card-bg);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.10);
-    transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    border: none;
-    min-height: 650px; /* tăng chiều cao tối thiểu để card dài ra */
-    position: relative;
-}
-
-.card:hover {
-    transform: translateY(-8px) scale(1.025);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.13);
-    background: linear-gradient(120deg, #232526 0%, #1C1C1C 100%);
-}
-
-.card-image {
-    width: 100%;
-    height: 340px; /* tăng chiều cao hình ảnh để card dài hơn */
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-    transition: filter 0.2s;
-}
-
-.card:hover .card-image {
-    filter: brightness(1.08) saturate(1.1);
-}
-
-.card-details {
-    padding: 44px 28px 32px 28px; /* tăng padding để card dài hơn */
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.card-title {
-    font-size: 1.7rem; /* tăng kích thước tiêu đề */
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--text-color);
-    letter-spacing: 0.01em;
-    text-align: left;
-    font-family: 'Phudu', cursive, sans-serif !important;
-    font-variation-settings: 'wght' 500;
-    font-weight: 500 !important;
-}
-
-.card-subtitle {
-    font-size: 1.2rem; /* tăng kích thước phụ đề */
-    color: var(--text-color);
-    opacity: 0.7;
-    margin-bottom: 14px;
-    font-weight: 500;
-    text-align: left;
-}
-
-.card-description {
-    font-size: 1rem;
-    color: var(--text-color);
-    opacity: 0.68;
-    margin-bottom: 16px;
-    text-align: left;
-    line-height: 1.6;
-    flex: 1;
-}
-
-.card-year {
-    font-size: 0.98rem;
-    color: var(--text-color);
-    opacity: 0.8;
-    text-align: right;
-    font-weight: 600;
-    margin-top: 10px;
-}
-
-.footer-links {
-    display: flex;
-    align-items: center;
-    margin-top: auto;
-}
-
-.footer-link {
-    color: var(--footer-link);
-    font-size: 12px;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin-right: 8px;
-}
-
-.footer-divider {
-    color: var(--footer-divider);
-    font-size: 12px;
-    font-weight: 500;
-    text-transform: uppercase;
-}
-
-.footer-copy {
-    opacity: var(--footer-copy);
-    font-size: 12px;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin-top: 10px;
-}
-
-.blue-quiz-link {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 1.4em;
-    transition: color 0.2s;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 1024px) {
-    .sidebar {
-        width: 250px; /* Slightly reduce sidebar width */
+    if (!order || order.length !== items.length) {
+        // Randomize
+        order = items.map((_, i) => i);
+        for (let i = order.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [order[i], order[j]] = [order[j], order[i]];
+        }
+        localStorage.setItem(menuOrderKey, JSON.stringify(order));
     }
 
-    .menu-item {
-        font-size: 15px; /* Slightly smaller font size */
+    // Apply order
+    order.forEach(idx => menu.appendChild(items[idx]));
+
+    // Drag events
+    menu.querySelectorAll('.menu-item').forEach(item => {
+        item.addEventListener('dragstart', function(e) {
+            draggedItem = item;
+            item.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        });
+        item.addEventListener('dragend', function() {
+            draggedItem = null;
+            item.classList.remove('dragging');
+            menu.querySelectorAll('.menu-item').forEach(i => i.classList.remove('drag-over'));
+            // Save new order
+            const newOrder = Array.from(menu.children).map(i => items.indexOf(i));
+            localStorage.setItem(menuOrderKey, JSON.stringify(newOrder));
+        });
+        item.addEventListener('dragover', function(e) {
+            e.preventDefault();
+        });
+        item.addEventListener('dragenter', function(e) {
+            if (item !== draggedItem) item.classList.add('drag-over');
+        });
+        item.addEventListener('dragleave', function() {
+            item.classList.remove('drag-over');
+        });
+        item.addEventListener('drop', function(e) {
+            e.preventDefault();
+            if (item !== draggedItem) {
+                menu.insertBefore(draggedItem, item.nextSibling === draggedItem ? item : item.nextSibling);
+            }
+            menu.querySelectorAll('.menu-item').forEach(i => i.classList.remove('drag-over'));
+        });
+    });
+}
+
+window.initMenuDragDrop = initMenuDragDrop;
+
+// Initial section load
+document.addEventListener('DOMContentLoaded', () => {
+    const currentSection = localStorage.getItem('currentSection');
+    if (currentSection === 'about') showAbout();
+    else showWork();
+});
+
+// Responsive sidebar toggle logic (for mobile)
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.sidebar');
+    const toggleBtn = document.getElementById('toggle-sidebar');
+    const closeBtn = document.getElementById('close-sidebar');
+    function showSidebar() {
+        // Animation: add class for open
+        sidebar.style.display = 'flex';
+        setTimeout(() => sidebar.classList.add('sidebar-open'), 10);
     }
-
-    .header-title {
-        font-size: 22px; /* Adjust title size */
+    function hideSidebar() {
+        // Animation: remove class for close
+        sidebar.classList.remove('sidebar-open');
+        setTimeout(() => { sidebar.style.display = 'none'; }, 300);
     }
+    if (toggleBtn) toggleBtn.addEventListener('click', showSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', hideSidebar);
 
-    .header-subtitle {
-        font-size: 12px; /* Adjust subtitle size */
+    // Hide sidebar on mobile by default
+    function handleResize() {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.remove('sidebar-open');
+            sidebar.style.display = 'none';
+        } else {
+            sidebar.classList.remove('sidebar-open');
+            sidebar.style.display = 'flex';
+        }
     }
+    window.addEventListener('resize', handleResize);
+    handleResize();
 
-    .card-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
+    // Optional: Hide sidebar when clicking outside (mobile only)
+    document.addEventListener('click', function(e) {
+        if (
+            window.innerWidth <= 768 &&
+            sidebar.style.display === 'flex' &&
+            sidebar.classList.contains('sidebar-open') &&
+            !sidebar.contains(e.target) &&
+            e.target !== toggleBtn
+        ) {
+            hideSidebar();
+        }
+    });
+});
+
+// Responsive sidebar toggle logic
+function handleSidebarToggle() {
+    const sidebar = document.querySelector('.sidebar');
+    const toggleBtn = document.getElementById('toggle-sidebar');
+    const closeBtn = document.getElementById('close-sidebar');
+    function showSidebar() {
+        sidebar.style.display = 'flex';
     }
-    .card-image {
-        height: 170px;
+    function hideSidebar() {
+        sidebar.style.display = 'none';
     }
-    .card-details {
-        padding: 18px 14px 14px 14px;
+    if (toggleBtn) toggleBtn.addEventListener('click', showSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', hideSidebar);
+    function handleResize() {
+        if (window.innerWidth <= 768) {
+            sidebar.style.display = 'none';
+        } else {
+            sidebar.style.display = 'flex';
+        }
     }
+    window.addEventListener('resize', handleResize);
+    handleResize();
 }
+document.addEventListener('DOMContentLoaded', handleSidebarToggle);
 
-/* XÓA HOÀN TOÀN các media query liên quan đến sidebar, #toggle-sidebar, #close-sidebar cho mobile/tablet */
-
-@media (max-width: 600px) {
-    .card-container {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 0;
+// Light/Dark mode toggle logic (circle button style, no icon)
+document.addEventListener('DOMContentLoaded', function() {
+    const modeBtn = document.getElementById('mode-toggle-btn');
+    const modeLabel = document.getElementById('mode-toggle-label');
+    function setMode(mode) {
+        if (mode === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            modeLabel.textContent = 'Light Mode';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            modeLabel.textContent = 'Dark Mode';
+        }
+        localStorage.setItem('theme', mode);
     }
-    .card {
-        min-height: 320px;
+    if (modeBtn) {
+        modeBtn.addEventListener('click', function() {
+            const current = document.documentElement.getAttribute('data-theme');
+            setMode(current === 'light' ? 'dark' : 'light');
+        });
     }
-    .card-image {
-        height: 140px;
+    // Init mode from localStorage or default to dark
+    const saved = localStorage.getItem('theme');
+    setMode(saved === 'light' ? 'light' : 'dark');
+});
+
+// Animation: Glitch/Noise effect and text swap for header-title
+document.addEventListener('DOMContentLoaded', function() {
+    const titleEl = document.getElementById('animated-title');
+    const titles = ['HAO NGUYEN', 'PRODUCT DESIGNER'];
+    let currentTitle = 0;
+    function glitchText(text) {
+        // Simple glitch: randomly replace a few chars with noise chars
+        const noiseChars = '!@#$%^&*()_+-=~<>?/|';
+        let arr = text.split('');
+        for (let i = 0; i < 2; i++) {
+            const idx = Math.floor(Math.random() * arr.length);
+            arr[idx] = noiseChars[Math.floor(Math.random() * noiseChars.length)];
+        }
+        return arr.join('');
     }
-    .card-details {
-        padding: 14px 10px 10px 10px;
+    function animateTitleSwap() {
+        let steps = 0;
+        const original = titles[currentTitle];
+        const next = titles[1 - currentTitle];
+        // Glitch out
+        const glitchInterval = setInterval(() => {
+            titleEl.textContent = glitchText(original);
+            steps++;
+            if (steps > 7) {
+                clearInterval(glitchInterval);
+                // Glitch in
+                let inSteps = 0;
+                const inInterval = setInterval(() => {
+                    titleEl.textContent = glitchText(next);
+                    inSteps++;
+                    if (inSteps > 5) {
+                        clearInterval(inInterval);
+                        titleEl.textContent = next;
+                        currentTitle = 1 - currentTitle;
+                    }
+                }, 60);
+            }
+        }, 50);
     }
-}
+    setInterval(animateTitleSwap, 3200);
+});
 
-@media (max-width: 480px) {
-    .header-title {
-        font-size: 18px; /* Further adjust title size for very small screens */
+// Add handler for GAME menu item
+document.addEventListener('DOMContentLoaded', function() {
+    const gameMenu = document.querySelector('.menu-item[data-section="game"]');
+    if (gameMenu) {
+        gameMenu.style.pointerEvents = 'none';
+        gameMenu.style.opacity = '0.5';
+        gameMenu.style.cursor = 'not-allowed';
     }
-
-    .header-subtitle {
-        font-size: 10px; /* Further adjust subtitle size for very small screens */
-    }
-
-    .menu-item {
-        padding: 8px; /* Reduce padding for mobile */
-    }
-
-    .card-title {
-        font-size: 20px; /* Adjust card title size */
-    }
-
-    .card-subtitle {
-        font-size: 14px; /* Adjust card subtitle size */
-    }
-
-    .card-description {
-        font-size: 12px; /* Adjust card description size */
-    }
-
-    .footer-link {
-        font-size: 10px; /* Smaller footer link size */
-    }
-}
-
-.about-content {
-    display:flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-    font-size: 16px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 10px;
-    
-}
-
-.about-content p {
-    margin: 15px 0; /* Giảm khoảng cách giữa các đoạn văn */
-}
-.about-left::-webkit-scrollbar, .about-right::-webkit-scrollbar {
-    width: 0; /* Hide vertical scrollbar */
-    height: 0; /* Hide horizontal scrollbar */
-}
-.about-left {
-    flex: 1;
-    min-width: 300px;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Add border */
-    border-radius: 8px; /* Add rounded corners */
-    padding: 20px; /* Add padding for inner content */
-    background: #1C1C1C; /* Match the background color */
-    max-height: 7000px; /* Set a maximum height */
-    overflow-y: auto; /* Enable vertical scrolling */
-}
-.about-left {
-    margin-left: -8px; /* Keep this if you want to adjust the left margin */
-    margin-bottom: 10px;
-}
-
-.about-right {
-    flex: 1; /* Allow it to take available space */
-    min-width: 300px; /* Minimum width */
-    padding: 0; /* Remove any padding */
-    margin: 0; /* Remove any margin */
-    max-height: 820px; /* Set a maximum height */
-    overflow-y: auto; /* Enable vertical scrolling */
-}
-
-.about-list {
-    list-style-type: none; /* Remove default list styling */
-    padding-left: 0; /* Remove left padding */
-    margin-bottom: 20px; /* Space below the list */
-}
-
-.about-list li {
-    margin-bottom: 10px; /* Space between list items */
-    font-size: 14px; /* Font size for list items */
-    color: rgba(255, 255, 255, 0.75); /* Text color */
-}
-
-.about-subtitle {
-    font-size: 18px; /* Font size for subtitles */
-    font-weight: 600; /* Bold font weight */
-    margin-top: 20px; /* Space above subtitles */
-    margin-bottom: 10px; /* Space below subtitles */
-    color: rgba(255, 255, 255, 0.9); /* Text color */
-}
-
-.about-list li strong {
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 500;
-}
-
-.about-list a {
-    color: rgba(255, 255, 255, 0.75); /* Link color */
-    text-decoration: none; /* Remove underline */
-}
-
-.about-list a:hover {
-    text-decoration: underline; /* Underline on hover */
-}
-
-.about-section {
-    margin-bottom: 20px; /* Space between sections */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Border for each section */
-    background: rgba(255, 255, 255, 0.05); /* Slight background for sections */
-    border-radius: 8px; /* Optional: rounded corners for a softer look */
-    padding-top: 40px 0 0;
-    padding-left: 20px;
-}
-.about-section iframe {
-    width: 100%; /* Make the iframe responsive */
-    height: 166px; /* Set a fixed height */
-    border: none; /* Remove border */
-    margin-top: 20px; /* Space above the playlist */
-}
-.about-image {
-    width: 100%; /* Giữ nguyên chiều rộng */
-    aspect-ratio: 14 / 9; /* Đặt tỷ lệ khung hình */
-    object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
-    border-radius: 8px; /* Bo góc */
-    margin-bottom: 20px; /* Khoảng cách phía dưới */
-    filter: grayscale(100%); /* Chuyển sang trắng đen */
-}
-
-/* Spotify Playlist Styling */
-.spotify-playlist {
-    margin-top: 10px; /* Giảm khoảng cách phía trên để đẩy playlist lên cao hơn */
-    margin-bottom: 20px; /* Add space below the playlist */
-    padding: 10x; /* Add padding around the playlist */
-    border-radius: 12px; /* Add rounded corners */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Border for each section */
-
-}
-
-.spotify-playlist iframe {
-    width: 100%; /* Make the iframe responsive */
-    border-radius: 12px; /* Add rounded corners to the iframe */
-}
-
-/* Media Queries for Mobile Devices */
-@media (max-width: 768px) {
-    .spotify-playlist iframe {
-        height: 260px; /* Tăng chiều cao cho tablet/mobile */
-    }
-}
-
-@media (max-width: 480px) {
-    .spotify-playlist iframe {
-        height: 200px; /* Tăng chiều cao cho mobile nhỏ */
-    }
-}
-
-body {
-    margin: 0;
-    font-family: 'IBM Plex Mono', monospace;
-    background: #141414;
-    color: white;
-}
-
-.container {
-    display: flex;
-    height: 100vh; /* Full height of the viewport */
-    flex-direction: row; /* Default to row layout */
-    position: relative; /* Position relative for absolute button */
-}
-
-.sidebar {
-    width: 300px; /* Fixed width for the sidebar */
-    padding: 20px;
-    background: #141414;
-    display: flex;
-    flex-direction: column; /* Stack children vertically */
-    border-right: 2px solid rgba(255, 255, 255, 0.1); /* Right border for sidebar */
-    transition: transform 0.3s ease; /* Smooth transition for sidebar */
-}
-
-.header-container {
-    display: flex; /* Use Flexbox for alignment */
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
-    margin-bottom: 20px; /* Space below the header */
-}
-
-#toggle-sidebar {
-    display: none; /* Hide by default */
-    position: absolute;
-    top: 20px;
-    right: 20px; /* Move to the right */
-    left: auto;  /* Remove left positioning */
-    background: transparent;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 28px;
-    z-index: 1100;
-    height: 24px;         /* giảm chiều cao xuống nữa */
-    line-height: 24px;    /* căn giữa icon theo chiều dọc */
-    /* width: 48px; */    /* nếu muốn hình vuông, bỏ comment */
-}
-
-#close-sidebar {
-    display: none; /* Hide by default */
-    background: transparent;
-    color: white;
-    border: none;
-    font-size: 32px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    align-self: flex-end;
-    z-index: 1101;
-}
-
-/* Mode toggle circle button - border white with opacity, solid and inner circle on hover only */
-.mode-toggle-btn {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.4);
-  background: var(--sidebar-bg);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  outline: none;
-  padding: 0;
-  position: relative;
-  overflow: hidden;
-}
-.mode-toggle-btn .inner-circle {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #fff;
-  opacity: 0;
-  transition: opacity 0.18s;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-.mode-toggle-btn:hover {
-  background: var(--menu-hover-bg);
-  border-color: #fff;
-}
-.mode-toggle-btn:hover .inner-circle {
-  opacity: 1;
-}
-.mode-toggle-btn:focus {
-  background: var(--sidebar-bg);
-  border-color: rgba(255,255,255,0.4);
-}
-
-/* Responsive for mobile/tablet */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 80vw;
-        max-width: 340px;
-        height: 100vh;
-        z-index: 1001;
-        background: var(--sidebar-bg);
-        display: none;
-        flex-direction: column;
-        border-right: 2px solid var(--border-color);
-        border-bottom: none;
-        box-shadow: 2px 0 16px rgba(0,0,0,0.25);
-        padding-top: 40px;
-        transition: left 0.3s, box-shadow 0.3s, transform 0.3s cubic-bezier(.4,2,.6,1), opacity 0.3s;
-        opacity: 0;
-        pointer-events: none;
-        transform: translateX(40px);
-    }
-    .sidebar.sidebar-open {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateX(0);
-    }
-    #toggle-sidebar {
-        display: block;
-    }
-    #close-sidebar {
-        display: block;
-    }
-    main.work-section {
-        padding: 16px;
-        margin-left: 0;
-    }
-    .footer-links {
-        flex-wrap: wrap;
-        gap: 4px;
-    }
-}
-
-/* --- ĐẢM BẢO MENU BURGER VÀ TEXT ĐỀU NHAU TRÊN MOBILE --- */
-@media (max-width: 768px) {
-    .header-container {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        padding: 0 8px;
-        min-height: 48px;
-    }
-    #toggle-sidebar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 48px;
-        width: 48px;
-        font-size: 28px;
-        margin: 0;
-        padding: 0;
-        background: transparent;
-        border-radius: 8px;
-        box-shadow: none;
-    }
-    .menu {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-evenly !important;
-        width: 100%;
-        gap: 0;
-        margin: 0;
-        padding: 0;
-    }
-    .menu-item {
-        flex: 1 1 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 0;
-        min-height: 48px;
-        font-size: 15px;
-        margin: 0 2px;
-        padding: 0 2px;
-        border-radius: 8px;
-        text-align: center;
-        box-sizing: border-box;
-    }
-}
-@media (max-width: 480px) {
-    .header-container {
-        min-height: 40px;
-        padding: 0 4px;
-    }
-    #toggle-sidebar {
-        height: 40px;
-        width: 40px;
-        font-size: 22px;
-    }
-    .menu-item {
-        min-height: 40px;
-        font-size: 13px;
-    }
-    .sidebar.sidebar-open .menu-item {
-        min-height: 40px;
-        font-size: 13px;
-        padding: 0 2px;
-    }
-}
-
-/* --- Responsive: Khi sidebar mở trên mobile, menu dọc đều, dễ bấm --- */
-@media (max-width: 768px) {
-    .sidebar.sidebar-open .menu {
-        flex-direction: column !important;
-        align-items: stretch !important;
-        justify-content: flex-start !important;
-        width: 100%;
-        gap: 0;
-        margin: 0;
-        padding: 0;
-    }
-    .sidebar.sidebar-open .menu-item {
-        width: 100%;
-        margin: 8px 0;
-        text-align: left;
-        justify-content: flex-start;
-        align-items: center;
-        font-size: 16px;
-        min-height: 48px;
-        padding: 10px;
-    }
-}
-@media (max-width: 480px) {
-    .sidebar.sidebar-open .menu-item {
-        min-height: 40px;
-        font-size: 15px;
-        padding: 0 2px;
-    }
-}
-
-/* Hide old spinner */
-.spinner { display: none !important; }
-
-@media (min-width: 769px) {
-    #toggle-sidebar {
-        display: none; /* Hide the burger button on desktop */
-    }
-
-    #close-sidebar {
-        display: none; /* Hide the close button on desktop */
-    }
-}
-.menu-item.active {
-    color: rgba(255, 255, 255, 1); /* Active color */
-    background: rgba(255, 255, 255, 0.1); /* Active background */
-    border-color: rgba(255, 255, 255, 0.5); /* Active border color */
-}
-
-
-.work-details-fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #141414;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    overflow: hidden;
-    padding: 20px; /* Thêm padding để tránh nội dung sát viền màn hình */
-}
-
-.work-image-fullscreen {
-    width: 100%;
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.1); /* Thêm border cho hình ảnh */
-    border-radius: 8px; /* Bo góc */
-    margin-bottom: 20px; /* Khoảng cách giữa hình ảnh và thông tin */
-}
-
-.full-size-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px; /* Bo góc */
-    border: 2px solid rgba(255, 255, 255, 0.1); /* Thêm border cho phần thông tin */
-}
-
-.work-info-fullscreen {
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    background: #1C1C1C;
-    border-radius: 8px;
-    border: 2px solid rgba(255, 255, 255, 0.1); /* Thêm border cho phần thông tin */
-    text-align: center;
-}
-.work-info{
-    padding: 50px;
-    
-}
-.work-title {
-    font-size: 32px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    font-family: 'Phudu', cursive, sans-serif !important;
-    font-variation-settings: 'wght' 500;
-    font-weight: 500 !important;
-}
-
-.work-subtitle {
-    font-size: 20px;
-    color: rgba(255, 255, 255, 0.75);
-    margin-bottom: 10px;
-}
-
-.work-description {
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 20px;
-    padding-bottom: 20px; /* Khoảng cách giữa mô tả và border */
-}
-
-.work-meta {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 20px;
-    padding-bottom: 20px; /* Khoảng cách giữa thông tin meta và border */
-}
-
-.work-meta p {
-    margin: 5px 0;
-}
-
-.close-button {
-    background: #ff4757;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.close-button:hover {
-    background: #ff6b81;
-}
-
-
-.back-icon {
-    font-size: 24px; /* Kích thước biểu tượng */
-    font-weight: bold; /* Đậm */
-    color: rgba(255, 255, 255, 0.8); /* Màu sắc */
-    cursor: pointer; /* Con trỏ chuột */
-    margin-bottom: 20px; /* Khoảng cách dưới */
-    transition: color 0.3s ease; /* Hiệu ứng màu khi hover */
-}
-
-.back-icon:hover {
-    color: rgba(255, 255, 255, 1); /* Màu sắc khi hover */
-}
-
-[data-theme="light"] .back-icon {
-    color: #222 !important; /* Đổi màu mũi tên cho light mode */
-}
-
-[data-theme="light"] .back-icon:hover {
-    color: #000 !important;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px); /* Di chuyển lên một chút */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0); /* Về vị trí ban đầu */
-    }
-}
-
-.work-details {
-    display: none; /* Ẩn chi tiết ban đầu */
-    animation: fadeIn 0.5s ease; /* Thêm animation */
-}
-.fade-in {
-    animation: fadeIn 0.5s ease forwards; /* Kích hoạt animation */
-}
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.fade-in.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-.figma-iframe {
-    width: 100%; /* Chiều rộng sẽ lấp đầy container */
-    height: auto; /* Chiều cao tự động điều chỉnh */
-    aspect-ratio: 16 / 9; /* Tỉ lệ khung hình (16:9) */
-    border: 1px dashed rgba(88, 88, 88, 0.1); /* Border cho iframe */
-    margin-top: 20px; /* Khoảng cách phía trên */
-}
-
-/* Loading Animation Overlay */
-#loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #141414;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    transition: opacity 0.4s;
-}
-
-.spinner {
-    width: 60px;
-    height: 60px;
-    border: 6px solid rgba(255,255,255,0.2);
-    border-top: 6px solid #fff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* Toggle switch style */
-.toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 44px;
-    height: 24px;
-}
-.toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: var(--border-color);
-    transition: .3s;
-    border-radius: 24px;
-}
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background: var(--text-color);
-    transition: .3s;
-    border-radius: 50%;
-}
-.toggle-switch input:checked + .slider {
-    background: #ffd700;
-}
-.toggle-switch input:checked + .slider:before {
-    transform: translateX(20px);
-    background: #fff;
-}
-
-/* Grid background for body */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-body {
-  position: relative;
-  z-index: 1;
-}
-
-body, .sidebar, .card, .about-left, .about-section, .work-info-fullscreen {
-    background: var(--bg-color) !important;
-    color: var(--text-color) !important;
-    text-transform: uppercase;
-    font-family: 'IBM Plex Mono', monospace !important;
-}
-
-.header-title, .card-title, .work-title {
-    font-family: 'Phudu', cursive, sans-serif !important;
-    font-variation-settings: 'wght' 500;
-    font-weight: 500 !important;
-}
-
-/* Loader Animation */
-.loader {
-  width: 80px;
-  height: 60px;
-  box-sizing: border-box;
-  background:
-    linear-gradient(#fff 0 0) left /calc(50% - 15px) 8px no-repeat,
-    linear-gradient(#fff 0 0) right/calc(50% - 15px) 8px no-repeat,
-    conic-gradient(from 135deg at top,#0000, red 1deg 90deg,#0000 91deg) bottom/14px 8px repeat-x,
-    #000;
-  border-bottom: 2px solid red;
-  position: relative;
-  overflow: hidden;
-  animation: l6-0 1s infinite linear;
-}
-.loader::before {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 14px;
-  background: lightblue;
-  left: -5px;
-  animation:
-    l6-1 2s infinite cubic-bezier(0,100,1,100), 
-    l6-2 2s infinite linear;
-}
-@keyframes l6-0{
-  50% { background-position: left,right,bottom -2px left -4px}
-}
-@keyframes l6-1{
-  0%,27%   {bottom: calc(50% + 4px)}
-  65%,100% {bottom: calc(50% + 4.1px)}
-}
-@keyframes l6-2{
-  100% {left:100%}
-}
-
-/* Ensure loading overlay is black background */
-#loading-overlay {
-    background: #000 !important;
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        padding-top: 20px !important;
-    }
-    .sidebar.sidebar-open .menu {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-    }
-}
-
+});
+
+function showGame() {
+    setActiveMenu('game');
+    document.getElementById('main-content').innerHTML = `
+        <h2 class="section-title">MINI GAME</h2>
+        <div style="padding:40px 0;text-align:center;">
+            <p style="font-size:18px;opacity:0.7;">Coming soon!</p>
+            <img src="img/2000's spider-man game icon.jpg" alt="Game" style="width:120px;margin:24px auto;display:block;filter:drop-shadow(0 2px 8px #0002);">
+        </div>
+    `;
+}
+
+// Custom cursor effect
+document.addEventListener('DOMContentLoaded', function() {
+    const cursor = document.createElement('div');
+    cursor.id = 'custom-cursor';
+    document.body.appendChild(cursor);
+    Object.assign(cursor.style, {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '24px', // Nhỏ khi chưa hover
+        height: '24px',
+        borderRadius: '50%',
+        border: '2px solid #fff',
+        background: 'rgba(255,255,255,0.08)',
+        pointerEvents: 'none',
+        zIndex: '9999',
+        transform: 'translate(-50%, -50%) scale(1)',
+        transition: 'background 0.18s, border-color 0.18s, transform 0.08s, width 0.18s, height 0.18s',
+        mixBlendMode: 'difference',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    });
+    // Thêm SVG icon con mắt vào trong cursor
+    const eyeIcon = document.createElement('div');
+    eyeIcon.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:auto;"><ellipse cx="12" cy="12" rx="8" ry="5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="2.5" fill="white"/></svg>`;
+    eyeIcon.style.position = 'absolute';
+    eyeIcon.style.top = '50%';
+    eyeIcon.style.left = '50%';
+    eyeIcon.style.transform = 'translate(-50%, -50%)';
+    eyeIcon.style.pointerEvents = 'none';
+    eyeIcon.style.display = 'none'; // Ẩn mặc định
+    eyeIcon.id = 'cursor-eye-icon';
+    cursor.appendChild(eyeIcon);
+    document.addEventListener('mousemove', function(e) {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+    // Grow cursor on interactive elements
+    // Bổ sung .card và .back-icon vào danh sách selector
+    const interactive = ['a', 'button', '.menu-item', '.mode-toggle-btn', '.card', '.back-icon'];
+    document.addEventListener('mouseover', function(e) {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        if (interactive.some(sel => e.target.closest(sel))) {
+            cursor.style.width = '40px';
+            cursor.style.height = '40px';
+            cursor.style.transform = 'translate(-50%, -50%) scale(1.2)';
+            cursor.style.background = 'rgba(255,255,255,0.18)';
+            cursor.style.borderColor = isLight ? '#222' : '#fff';
+            // Đổi màu icon con mắt
+            const svg = eyeIcon.querySelector('svg');
+            if (svg) {
+                const ellipse = svg.querySelector('ellipse');
+                const circle = svg.querySelector('circle');
+                if (ellipse) ellipse.setAttribute('stroke', isLight ? '#222' : '#fff');
+                if (circle) circle.setAttribute('fill', isLight ? '#222' : '#fff');
+            }
+            eyeIcon.style.display = 'block'; // Hiện icon con mắt
+        } else {
+            cursor.style.width = '24px';
+            cursor.style.height = '24px';
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursor.style.background = 'rgba(255,255,255,0.08)';
+            cursor.style.borderColor = isLight ? '#222' : '#fff';
+            // Đổi màu icon con mắt về mặc định
+            const svg = eyeIcon.querySelector('svg');
+            if (svg) {
+                const ellipse = svg.querySelector('ellipse');
+                const circle = svg.querySelector('circle');
+                if (ellipse) ellipse.setAttribute('stroke', isLight ? '#222' : '#fff');
+                if (circle) circle.setAttribute('fill', isLight ? '#222' : '#fff');
+            }
+            eyeIcon.style.display = 'none'; // Ẩn icon con mắt
+        }
+    });
+});
