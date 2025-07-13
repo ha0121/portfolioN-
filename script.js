@@ -58,7 +58,10 @@ function showWork() {
                     <div class="card-description">
                         A football quiz web app for Chelsea FC fans, built for the FPT event. Features interactive questions, real-time scoring, and a Chelsea-inspired UI.
                     </div>
-                    <div class="card-year">2025</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span class="card-tag website-tag">Website</span>
+                        <div class="card-year">2025</div>
+                    </div>
                 </div>
             </div>
             <div class="card" onclick="showWorkDetails('Zeta Application', 'Mobile App', '', '2024')">
@@ -69,7 +72,10 @@ function showWork() {
                     <div class="card-description">
                         A modern payment platform UI for food delivery, driver services, and grocery shipping. Focused on seamless user experience and clean, bold visuals.
                     </div>
-                    <div class="card-year">2024</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span class="card-tag">Mobile</span>
+                        <div class="card-year">2024</div>
+                    </div>
                 </div>
             </div>
             <div class="card" onclick="showWorkDetails2('Job & Recruitment', 'Mobile App', '', '2024')">
@@ -80,7 +86,10 @@ function showWork() {
                     <div class="card-description">
                         A job search app for Vietnam, connecting job seekers and employers with a fast, flexible, and intuitive interface. Includes research, personas, and prototype.
                     </div>
-                    <div class="card-year">2024</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span class="card-tag">Mobile</span>
+                        <div class="card-year">2024</div>
+                    </div>
                 </div>
             </div>
             <div class="card" onclick="showWorkDetails3('Fukuoka SoftBank HAWKS Gaming', 'Website', '', '2024')">
@@ -91,7 +100,10 @@ function showWork() {
                     <div class="card-description">
                         Esports team website for the Fukuoka SoftBank Hawks. Vibrant, energetic, and designed to promote e-sports and team spirit.
                     </div>
-                    <div class="card-year">2024</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span class="card-tag website-tag">Website</span>
+                        <div class="card-year">2024</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -656,3 +668,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
