@@ -185,30 +185,8 @@ function showWorkDetails(title, subtitle, description, year) {
                 </div>
             </div>
             <div class="work-image">
-                <img src="img/Frame 4.jpg" alt="${title}" class="full-size-image">
-            </div>
-        </div>
-        <div class="work-info">
-            <p class="work-description">Home & Searching can enhance user experience by highlighting popular dishes, adding a "Favorites" section, and offering personalized suggestions, while improving the search with smart filters and quick categories for easier and faster meal selection.</p>
-        </div>
-        <div class="work-image">
-            <img src="img/12.png" alt="${title}" class="full-size-image">
-        </div>
-        <div class="work-info">
-            <p class="work-description">Order Place in the Stripe food delivery app displays essential information such as order details, pickup location with GPS directions, estimated times for pickup and delivery, contact options for customers and restaurants, earnings for the current order, and delivery status to help drivers manage their tasks efficiently.</p>
-        </div>
-        <div class="work-image">
-            <img src="img/12345.jpg" alt="${title}" class="full-size-image">
-            <img src="img/123456.png" alt="${title}" class="full-size-image">
-        </div>
-        <div class="work-info">
-            <p class="work-description">Order for Delivery & and more screen in the Stripe food delivery app features an order summary, delivery options, payment methods, promotions, special instructions, and estimated delivery time, all aimed at providing a seamless ordering experience for users while ensuring they have everything needed before confirming their order.</p>
-        </div>
-        <div class="work-image">
-            <img src="img/3333.png" alt="${title}" class="full-size-image">
-            <img src="img/1.png" alt="${title}" class="full-size-image">
-            <img src="img/2222.png" alt="${title}" class="full-size-image">  
-        </div>
+                <img src="img/beta.png" alt="${title}" class="full-size-image">
+            </div>  
     `;
     const workDetails = document.querySelector('.work-details');
     workDetails.style.display = 'block'; // Hiển thị chi tiết
