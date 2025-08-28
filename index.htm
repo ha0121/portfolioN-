@@ -1,83 +1,805 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="haonguyendesigner - Portfolio of Hao Nguyen (haonguyendesigner) - Product Designer, UX/UI Designer based in Ho Chi Minh City. Showcasing selected works, experience, and contact information.">
-    <meta name="keywords" content="haonguyendesigner, Hao Nguyen, Product Designer, UX/UI, Portfolio, Ho Chi Minh City, Web Design, App Design, Figma, Adobe XD, Vietnam">
-    <meta name="author" content="Hao Nguyen">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://haonguyendesigner.id.vn/">
-    <meta property="og:title" content="haonguyendesigner | Hao Nguyen - Product Designer, UX/UI Designer, Portfolio">
-    <meta property="og:description" content="haonguyendesigner - Portfolio of Hao Nguyen (haonguyendesigner) - Product Designer, UX/UI Designer based in Ho Chi Minh City. Showcasing selected works, experience, and contact information.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://haonguyendesigner.id.vn/">
-    <meta property="og:image" content="https://haonguyendesigner.id.vn/img/avatar1.jpg">
-    <meta property="og:locale" content="en_US">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="haonguyendesigner | Hao Nguyen - Product Designer, UX/UI Designer, Portfolio">
-    <meta name="twitter:description" content="haonguyendesigner - Portfolio of Hao Nguyen (haonguyendesigner) - Product Designer, UX/UI Designer based in Ho Chi Minh City. Showcasing selected works, experience, and contact information.">
-    <meta name="twitter:image" content="https://haonguyendesigner.id.vn/img/avatar1.jpg">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="img/logo222.png">
-    <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@700;800&display=swap" rel="stylesheet">
-    <title>haonguyendesigner | Hao Nguyen - Product Designer, UX/UI Designer, Portfolio</title>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="img/note.avif">
+  <title>Hao Nguyen Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Animation Overlay -->
-    <div id="loading-overlay">
-        <div class="loader"></div>
+  <!-- macOS-style login overlay (shows first) -->
+  <div id="login-overlay" class="login-overlay" role="dialog" aria-modal="true">
+    <div class="login-topbar">
+      <!-- <img src="img/apple2.svg" alt="Apple" class="login-apple" /> -->
+      <div class="login-status">
+        <!-- status icons intentionally omitted here -->
+      </div>
+    </div>
+    <div class="login-center">
+      <img src="img/35253f64facc999e781f9d679feb1841.jpg" alt="User Avatar" class="login-avatar" />
+      <!-- <div class="login-username">HAO NGUYEN PORTFOLIO</div> -->
+  <!-- <div class="login-time" aria-hidden="true"></div> -->
+      <div class="login-input-wrap">
+  <input id="login-password" class="login-input" type="password" placeholder="Press anything" aria-label="Password" style="border-radius:45px;" />
+        <button type="button" class="login-toggle" aria-label="Toggle password visibility" title="Show password" aria-pressed="false">
+          <!-- eye open (visible when password is hidden) -->
+          <svg class="icon-open" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path class="eye-path" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle class="eye-circle" cx="12" cy="12" r="3" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle>
+          </svg>
+          <!-- eye closed / eye-off (visible when password is shown) -->
+          <svg class="icon-closed" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path class="eye-path" d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7 .97-1.6 2.56-3.78 4.7-5.56M6.34 6.34A10.94 10.94 0 0 1 12 5c7 0 11 7 11 7-.97 1.6-2.56 3.78-4.7 5.56" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path class="eye-path" d="M1 1l22 22" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+  <!-- <img class="apple-logo" src="img/apple2.svg" alt="Apple Logo" style="height:20px;vertical-align:middle;"> -->
+    <!-- <a href="#" class="nav-title">Hao Nguyen Portfolio</a> -->
+  <a href="https://www.linkedin.com/in/nguy%E1%BB%85n-anh-h%C3%A0o-4302a9223/" class="nav-link" target="_blank" rel="noopener noreferrer" style="font-size:13px;text-decoration:underline;">LINKEDIN</a>
+  <a href="https://drive.google.com/file/d/1e2FY9Wx6pgZzLSLoNuh5LDAbMNZ0wBGI/view" class="nav-link" target="_blank" rel="noopener noreferrer" style="font-size:13px;text-decoration:underline;">RESUME</a>
+  <a href="mailto:haonguyenanh03@gmail.com" class="nav-link" target="_blank" rel="noopener noreferrer" style="font-size:13px;text-decoration:underline;">EMAIL</a>
+    <span class="nav-right">
+      <span class="nav-icons">
+        <!-- <img src="img/box.png" alt="Box" style="height:18px;vertical-align:middle;"> -->
+        <img src="img/battlery.png" alt="Battery" style="height:24px;vertical-align:middle;">
+        <img src="img/wifiicon.png" alt="WiFi" style="height:20px;vertical-align:middle;">
+        <img src="img/searchicon.png" alt="Search" style="height:20px;vertical-align:middle;">
+        <img src="img/control-centre.svg" alt="Screen" style="height:20px;vertical-align:middle;">
+      </span>
+      <span class="nav-date">Tuesday, Aug 12 &nbsp; 4:25 PM</span>
+    </span>
+  </nav>
+  <div class="grid-bg"></div>
+  <div class="sticky-note">
+    <b>To do:</b>
+    <ul>
+      <li class="done">Drink water every day</li>
+      <li>Move to another country</li>
+      <li>Build that banger spotify playlist</li>
+      <li>Deploying my first indie game</li>
+      <li>Got a girl friend</li>
+      <li>Travel somewhere new every year</li>
+    </ul>
+  </div>
+  <!-- Centered title added per request -->
+    <div class="center-title" aria-hidden="true">
+      <h1>portfolio.</h1>
+  </div>
+  <div class="desktop-icons">
+    <div class="icon file">
+      <img src="img/file2.avif" alt="Resume" style="width:68px;height:68px;">
+      <span>Resume.pdf</span>
+    </div>
+    <div class="icon folder">
+      <img src="img/macos_big_sur_wpaper_folder_icon_186058.png" alt="About Me" style="width:68px;height:68px;">
+      <span>About Me</span>
+    </div>
+    <div class="icon folder">
+      <img src="img/macos_big_sur_wpaper_folder_icon_186058.png" alt="Project 02" style="width:68px;height:68px;">
+      <span>ZETA APP</span>
+    </div>
+    <div class="icon folder" id="project01-icon">
+      <img src="img/macos_big_sur_wpaper_folder_icon_186058.png" alt="Project 01" style="width:68px;height:68px;">
+      <span>BLUES QUIZ - CHELSEA FC X FPT</span>
+    </div>
+    <div class="icon folder">
+      <img src="img/macos_big_sur_wpaper_folder_icon_186058.png" alt="Project 03" style="width:68px;height:68px;">
+      <span>FUKUOKA SOFTBANK HAWKS GAMING WEBSITE</span>
+    </div>
+    <div class="icon folder">
+      <img src="img/macos_big_sur_wpaper_folder_icon_186058.png" alt="Project 04" style="width:68px;height:68px;">
+      <span>JOB AND RECRUITMENT</span>
+    </div>
+      <div class="icon folder">
+      <img src="img/trash111.avif" alt="Project 04" style="width:68px;height:68px;">
+      <span>Dont Click</span>
+    </div>
+    <!-- <div class="icon trash">
+      <img src="img/trash111.avif" alt="Don't Look">
+      <span>Don't Look</span>
+    </div> -->
+  </div>
+  <div class="dock">
+  <img src="img/Home.avif" alt="Finder">
+  <img src="img/task.avif" alt="Launchpad">
+  <img src="img/safari.avif" alt="Safari">
+  <img src="img/mess.avif" alt="Messages">
+  <img src="img/mail.avif" alt="Mail">
+  <img src="img/map.avif" alt="Maps">
+  <img src="img/photo.avif" alt="Photos">
+  <img src="img/cam.avif" alt="Facetime">
+  <img src="img/calendar.avif" alt="Calendar">
+  <img src="img/profile.avif" alt="Contacts">
+  <img src="img/reminds.avif" alt="Reminders">
+  <img src="img/note.avif" alt="Notes">
+  <img src="img/tv.avif" alt="TV">
+  <img src="img/music.avif" alt="Music">
+  <img src="img/podcast.avif" alt="Podcasts">
+  <img src="img/applestore.avif" alt="App Store">
+  <img src="img/settings.avif" alt="Settings">
+  <div class="dock-spotify">
+    <img src="img/vecteezy_spotify-logo-png-spotify-logo-transparent-png-spotify-icon_23986728.png" alt="Spotify">
+    <div class="dock-dot"></div>
+  </div>
+  <img src="img/file.avif" alt="Folder">
+  <img src="img/trash.avif" alt="Trash">
+  </div>
+  <script src="script.js"></script>
+
+  <script>
+    // Kéo thả sticky-note
+    (function() {
+      const sticky = document.querySelector('.sticky-note');
+      if (!sticky) return;
+      let isDragging = false, dragOffsetX = 0, dragOffsetY = 0;
+  sticky.style.position = 'fixed';
+  sticky.style.zIndex = '50';
+      sticky.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        const rect = sticky.getBoundingClientRect();
+        dragOffsetX = e.clientX - rect.left;
+        dragOffsetY = e.clientY - rect.top;
+        // Hiệu ứng khi bắt đầu kéo
+        sticky.style.transition = 'box-shadow 0.2s, transform 0.2s';
+        sticky.style.boxShadow = '0 8px 32px 0 rgba(0,0,0,0.25)';
+        sticky.style.transform = 'scale(1.04)';
+      });
+      document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+          let left = e.clientX - dragOffsetX;
+          let top = e.clientY - dragOffsetY;
+          left = Math.max(0, Math.min(window.innerWidth - sticky.offsetWidth, left));
+          top = Math.max(0, Math.min(window.innerHeight - sticky.offsetHeight, top));
+          sticky.style.left = left + 'px';
+          sticky.style.top = top + 'px';
+        }
+      });
+      document.addEventListener('mouseup', function() {
+        if (isDragging) {
+          // Hiệu ứng khi thả sticky note
+          sticky.style.transition = 'box-shadow 0.25s, transform 0.25s';
+          sticky.style.boxShadow = '';
+          sticky.style.transform = 'scale(1)';
+        }
+        isDragging = false;
+      });
+    })();
+  </script>
+
+  <script>
+    // Trigger unlock animation when user types a password or presses Enter
+    (function() {
+      const overlay = document.getElementById('login-overlay');
+      const pw = document.getElementById('login-password');
+      if (!overlay || !pw) return;
+
+      let unlocked = false;
+
+      function doUnlock() {
+        if (unlocked) return; // only once
+        unlocked = true;
+        // add class to play animations
+        overlay.classList.add('unlocking');
+        // after the unlock animation completes, fade out overlay completely
+        setTimeout(() => {
+          overlay.classList.add('hide');
+          // remove overlay from accessibility tree after fade-out completes
+          setTimeout(() => {
+            overlay.style.display = 'none';
+            overlay.setAttribute('aria-hidden', 'true');
+          }, 700);
+        }, 760);
+      }
+
+      // If user presses Enter in the password field, unlock
+      pw.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          doUnlock();
+        }
+      });
+
+  // NOTE: auto-unlock on first typed character removed — unlock now only
+  // happens when user presses Enter to avoid accidental entry.
+    })();
+  </script>
+
+  <script>
+    // Clear the login password when the page is refreshed (F5/Ctrl+R)
+    (function() {
+      const pw = document.getElementById('login-password');
+      if (!pw) return;
+
+      // Try to prevent browser from restoring value
+      try { pw.autocomplete = 'off'; } catch (e) {}
+      // clear now
+      try { pw.value = ''; } catch (e) {}
+
+      // helper: clear immediately and shortly after to beat browser restore
+      function clearPwSoon() {
+        try { pw.value = ''; } catch (e) {}
+        setTimeout(function() { try { pw.value = ''; } catch (e) {} }, 10);
+      }
+
+      // Clear before reload when user presses F5, or Ctrl+R (cover key and keyCode)
+      window.addEventListener('keydown', function(e) {
+        const key = e.key;
+        const code = e.keyCode || e.which;
+        if (key === 'F5' || code === 116 || (e.ctrlKey && (key === 'r' || key === 'R' || code === 82))) {
+          clearPwSoon();
+        }
+      }, { passive: true });
+
+      // Clear on lifecycle events that may save/restore form state
+      window.addEventListener('beforeunload', clearPwSoon);
+      window.addEventListener('pagehide', function(e) { if (!e.persisted) clearPwSoon(); });
+      window.addEventListener('pageshow', function(e) { if (e.persisted) clearPwSoon(); });
+
+      // Some browsers save form state on visibility change
+      document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden') clearPwSoon();
+      });
+    })();
+  </script>
+    <script>
+      // Toggle password visibility for login input
+      (function() {
+        const pw = document.getElementById('login-password');
+        const btn = document.querySelector('.login-toggle');
+        if (!pw || !btn) return;
+
+        btn.addEventListener('click', function() {
+          const isPw = pw.type === 'password';
+          pw.type = isPw ? 'text' : 'password';
+          btn.title = isPw ? 'Hide password' : 'Show password';
+          btn.setAttribute('aria-pressed', String(isPw));
+          // swap icons
+          const openIcon = btn.querySelector('.icon-open');
+          const closedIcon = btn.querySelector('.icon-closed');
+          if (openIcon && closedIcon) {
+            if (isPw) {
+              openIcon.style.display = 'none';
+              closedIcon.style.display = 'block';
+            } else {
+              openIcon.style.display = 'block';
+              closedIcon.style.display = 'none';
+            }
+          }
+        });
+      })();
+    </script>
+
+  <script>
+    // Animation cho center-title khi mở web
+    window.addEventListener('DOMContentLoaded', function() {
+      const centerTitle = document.querySelector('.center-title');
+      if(centerTitle) {
+        setTimeout(() => centerTitle.classList.add('animated'), 100);
+      }
+    });
+  </script>
+
+  <script>
+    // Split center title and subtitle into per-character spans so hover only
+    // affects the hovered portion. Reuseable splitter accepts a class name so
+    // subtitle and headline can have slightly different styling.
+    (function() {
+      function splitChars(el, cls) {
+        if (!el) return;
+        const text = el.textContent || '';
+        el.innerHTML = '';
+        for (let i = 0; i < text.length; i++) {
+          const ch = text[i];
+          const span = document.createElement('span');
+          span.className = cls || 'char';
+            // preserve spaces as non-breaking to avoid collapsing
+            const displayChar = ch === ' ' ? '\u00A0' : ch;
+            span.textContent = displayChar;
+            // store the character in a data attribute so CSS can render a
+            // heavier overlay via ::after for a smooth opacity transition
+            span.setAttribute('data-ch', displayChar);
+          el.appendChild(span);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const h = document.querySelector('.center-title h1');
+        const sub = document.querySelector('.center-subtitle');
+        splitChars(h, 'char');
+        splitChars(sub, 'char-sub');
+      });
+    })();
+  </script>
+
+    <!-- Modal About Me -->
+    <div id="aboutme-modal" class="finder-modal" style="display:none;">
+      <div class="finder-content" style="max-width:420px;min-width:320px;background:#fff;box-shadow:0 2px 24px #bbb;border-radius:16px;">
+        <div class="finder-header" style="cursor:move;">
+          <span class="finder-dot red"></span>
+          <span class="finder-dot yellow"></span>
+          <span class="finder-dot green"></span>
+          <span class="finder-title">aboutme.jpg</span>
+        </div>
+          <div class="finder-main" style="padding:0;display:flex;justify-content:center;align-items:center;min-height:420px;min-width:420px;">
+            <img src="img/avatar1.jpg" alt="About Me Photo" style="width:100%;height:100%;object-fit:cover;box-shadow:0 2px 12px #ccc;">
+        </div>
+      </div>
+    </div>
+      <!-- Modal About Me Tab (Designer Info) -->
+      <div id="aboutme-tab-modal" class="finder-modal" style="display:none;">
+        <div class="finder-content" style="max-width:420px;min-width:320px;background:#fff;box-shadow:0 2px 24px #bbb;border-radius:16px;">
+          <div class="finder-header" style="cursor:move;">
+            <span class="finder-dot red"></span>
+            <span class="finder-dot yellow"></span>
+            <span class="finder-dot green"></span>
+            <span class="finder-title">aboutme.txt</span>
+          </div>
+          <div class="finder-main" style="padding:24px 24px 12px 24px;">
+            <div style="font-size:17px;line-height:1.7;color:#222;white-space:pre-line;">
+Hi, I'm Hao, a UX/UI designer specializing in creating thoughtful, user-centered digital experiences that inspire people to live more intentional lives.
+
+With a background in both design and technology, I bring a unique perspective to every project. My goal is to craft products that are not only functional, but also deeply meaningful.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Modal Finder cho Project 02 -->
+    <div id="finder-modal-02" class="finder-modal" style="display:none;">
+      <div class="finder-content">
+        <div class="finder-header">
+          <span class="finder-dot red"></span>
+          <span class="finder-dot yellow"></span>
+          <span class="finder-dot green"></span>
+          <span class="finder-title">ZETA APPLICATION</span>
+        </div>
+        <div class="finder-main">
+          <div class="finder-main-title">ZETA APPLICATION<br><span class="finder-sub"></span></div>
+          <div class="finder-description">
+            <p>Zeta Application is a popular payment processing platform that can be used to integrate payments into various applications, including food delivery, driver services, and grocery shipping.</p>
+            <p><strong>YEAR</strong>: 2024</p>
+            <p><strong>TOOLS</strong>: Figma, Adobe Photoshop</p>
+            <div class="finder-image" style="margin: 24px 0; text-align: left;">
+              <img src="img/img-project1.jpg" alt="Simplingo Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/beta.png" alt="Simplingo Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="container">
-        <!-- Sidebar toggle button for mobile -->
-        <button id="toggle-sidebar">&#9776;</button>
-        <aside class="sidebar">
-            <!-- Close button for mobile sidebar -->
-            <button id="close-sidebar">&times;</button>
-
-            <div class="footer-links" style="margin-top:0; padding-top:0;">
-                <a href="mailto:haonguyenanh03@gmail.com" class="footer-link">EMAIL</a>
-                <div class="footer-divider">/</div>
-                <a href="https://www.linkedin.com/in/nguy%E1%BB%85n-anh-h%C3%A0o-4302a9223/" target="_blank" class="footer-link">LinkedIn</a>
-                <div class="footer-divider">/</div>
-                <a href="https://drive.google.com/file/d/1e2FY9Wx6pgZzLSLoNuh5LDAbMNZ0wBGI/view" target="_blank" class="footer-link">Resumé</a>
-                <div class="footer-divider">/</div>
-                <a href="https://www.behance.net/haoad" target="_blank" class="footer-link">Behance</a>
+    <!-- Modal Finder cho Project 03 -->
+    <div id="finder-modal-03" class="finder-modal" style="display:none;">
+      <div class="finder-content">
+        <div class="finder-header">
+          <span class="finder-dot red"></span>
+          <span class="finder-dot yellow"></span>
+          <span class="finder-dot green"></span>
+          <span class="finder-title">FUKUOKA SOFTBANK HAWKS GAMING WEBSITE</span>
+        </div>
+        <div class="finder-main">
+          <div class="finder-main-title">FUKUOKA SOFTBANK HAWKS GAMING WEBSITE<br><span class="finder-sub"></span></div>
+          <div class="finder-description">
+            <p>Fukuoka SoftBank HAWKS Gaming HAWKS X Esport its participation in the eSports Pro League, the Fukuoka SoftBank Hawks will further promote e-sports and aim to become the world's number one entertainment company that transcends the boundaries of professional baseball teams.</p>
+            <p><strong>YEAR</strong>: 2024</p>
+            <p><strong>TOOLS</strong>: Figma, Adobe Photoshop</p>
+            <div class="finder-image" style="margin: 24px 0; text-align: left;">
+              <img src="img/japan-team.png" alt="Leafpress Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/news-shg.png" alt="Leafpress Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/player-shg.png" alt="Leafpress Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/history-shg.png" alt="Leafpress Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/profile-shg.png" alt="Leafpress Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/sponsor-shg.png" alt="Leafpress Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
             </div>
-
-            <h1 class="header-title" id="animated-title">haonguyendesigner | HAO NGUYEN</h1>
-            <p class="header-subtitle">
-                Ho Chi Minh City-based product designer / UX/UI designer. I build things that (hopefully) encourage people to lead more thoughtful lives.
-            </p>
-            
-            <nav class="menu">
-                <div class="menu-item" data-section="work" draggable="true" onclick="showWork()">
-                    <img src="img/interview_ david shrigley on his artistic interpretation of maison ruinart.jpg" alt="Work Icon" class="menu-icon">
-                    <div class="menu-text">
-                        WORK
-                        <span class="menu-subtext">A selection of recent work</span>
-                    </div>
-                </div>
-                <div class="menu-item" data-section="about" draggable="true" onclick="showAbout()">
-                    <img src="img/download (2).jpg" alt="About Icon" class="menu-icon">
-                    <div class="menu-text">
-                        ABOUT
-                        <span class="menu-subtext">Learn more about me</span>
-                    </div>
-                </div>
-            </nav>
-            
-            <!-- Spotify Playlist moved here -->
-            <div class="spotify-playlist">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0BFqbDnUs4LFfNIAulZGhA?utm_source=generator&theme=0" width="100%" height="445" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
-            <div class="footer-copy" style="margin-bottom:0; margin-top:32px;">©2025 made by Hao Nguyen</div>
-        </aside>
-        <main id="main-content" class="work-section">
-        </main>
+          </div>
+        </div>
+        <!-- <div style="width:100%;text-align:center;padding:18px 0 8px 0;">
+          <a href="https://ha0121.github.io/Leafpress/" target="_blank" style="color:#000000;font-size:16px;text-decoration:underline;">TRY DEMO LEAFPRESS</a>
+        </div> -->
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Modal Finder cho Project 04 -->
+    <div id="finder-modal-04" class="finder-modal" style="display:none;">
+      <div class="finder-content">
+        <div class="finder-header">
+          <span class="finder-dot red"></span>
+          <span class="finder-dot yellow"></span>
+          <span class="finder-dot green"></span>
+          <span class="finder-title">JOB AND RECRUITMENT</span>
+        </div>
+        <div class="finder-main">
+          <div class="finder-main-title">JOB AND RECRUITMENT<br><span class="finder-sub"></span></div>
+          <div class="finder-description">
+            <p>Job & Recruitment is a job search app in Vietnam, designed to efficiently connect job seekers and employers. With JR, we commit to providing a simple, fast, and flexible job search and recruitment experience.</p>
+            <p><strong>YEAR</strong>: 2024</p>
+            <p><strong>TOOLS</strong>: Figma, Adobe Photoshop</p>
+            <div class="finder-image" style="margin: 24px 0; text-align: left;">
+              <img src="img/jd22.png" alt="Amazon Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/desk-research2.png" alt="Amazon Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/desk-research.png" alt="Amazon Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/market-research.png" alt="Amazon Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/TYPO2.svg" alt="Amazon Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/search-jd.png" alt="Amazon Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/search2-jd.png" alt="Amazon Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/JD1.png" alt="Amazon Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <img src="img/JD.png" alt="Amazon Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+              <iframe class="figma-iframe" src="https://embed.figma.com/proto/pgAyL3T7JLKTGXPi3YAc5d/JOB%26RECUITMENT?page-id=81%3A538&amp;node-id=749-9068&amp;node-type=frame&amp;viewport=-20%2C122%2C0.2&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=749%3A9068&amp;show-proto-sidebar=1&amp;embed-host=share" allowfullscreen="" style="width:100%;height:600px;min-width:320px;min-height:320px;border-radius:12px;border:none;box-shadow:0 2px 12px #ccc;"></iframe>
+            </div>
+          </div>
+        </div>
+        <!-- <div style="width:100%;text-align:center;padding:18px 0 8px 0;">
+          <a href="https://ha0121.github.io/AmazonClone/" target="_blank" style="color:#000000;font-size:16px;text-decoration:underline;">TRY DEMO AMAZON CLONE</a>
+        </div> -->
+      </div>
+    </div>
+
+  <!-- Modal Finder cho Project 01 -->
+  <div id="finder-modal" class="finder-modal" style="display:none;">
+    <div class="finder-content">
+      <div class="finder-header">
+        <span class="finder-dot red"></span>
+        <span class="finder-dot yellow"></span>
+        <span class="finder-dot green"></span>
+        <span class="finder-title">BLUES QUIZ - CHELSEA FC X FPT</span>
+      </div>
+        <div class="finder-main">
+          <div class="finder-main-title">BLUES QUIZ - CHELSEA FC X FPT<br><span class="finder-sub"></span></div>
+            <div class="finder-description">
+                <p>BLUE QUIZ is a web application designed for Chelsea FC fans, allowing them to test their knowledge about the club through various quizzes. The app features a user-friendly interface, interactive quizzes, and a leaderboard to track top scores.</p>
+                <p><strong>YEAR</strong>: 2025</p>
+                <p><strong>TOOLS</strong>: Figma, Adobe Photoshop</p>
+          <div class="finder-image" style="margin: 24px 0; text-align: left;">
+            <img src="img/logo-chelsea.png" alt="Chelsea Quiz Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+            <img src="img//chelsea-page.png" alt="Chelsea Quiz Demo" style="max-width: 1200px; width: 100%; border-radius: 12px; box-shadow: 0 2px 12px #ccc;">
+          </div>
+          <!-- <div class="finder-folders">
+            <div class="finder-folder"><img src="img/file.avif" style="width:60px"><div>Project 02 (Simplingo)</div></div>
+            <div class="finder-folder"><img src="img/file.avif" style="width:60px"><div>Project 03 (Leafpress)</div></div>
+            <div class="finder-folder"><img src="img/file.avif" style="width:60px"><div>BLUE QUIZ - CHELSEA FC X FPT.pdf</div></div>
+            <div class="finder-folder"><img src="img/file.avif" style="width:60px"><div>Project 04 (Amazon)</div></div>
+          </div> -->
+        </div>
+      </div>
+      <div style="width:100%;text-align:center;padding:18px 0 8px 0;">
+        <a href="https://ha0121.github.io/BluesQuiz-Chelsea/" target="_blank" style="color:#000000;font-size:16px;text-decoration:underline;">TRY DEMO BLUES QUIZ - CHELSEA FC X FPT</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Spotify -->
+  <div id="spotify-modal" class="spotify-modal" style="display:none;">
+    <div class="spotify-content">
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0BFqbDnUs4LFfNIAulZGhA?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Mở modal khi double click vào About Me
+    document.querySelector('.desktop-icons .icon.folder:nth-child(2)').ondblclick = function() {
+  const modal = document.getElementById('aboutme-modal');
+  const tabModal = document.getElementById('aboutme-tab-modal');
+  const content = modal.querySelector('.finder-content');
+  content.style.position = 'fixed';
+  content.style.left = '100px';
+  content.style.top = '100px';
+  modal.style.display = 'flex';
+  modal.classList.add('show');
+  setTimeout(() => { modal.classList.remove('show'); }, 400);
+
+  // Hiển thị tab modal lệch xa hơn sang phải và xuống dưới
+  const tabContent = tabModal.querySelector('.finder-content');
+  tabContent.style.position = 'fixed';
+  tabContent.style.left = '500px';
+  tabContent.style.top = '260px';
+  tabModal.style.display = 'flex';
+  tabModal.classList.add('show');
+  setTimeout(() => { tabModal.classList.remove('show'); }, 400);
+    };
+
+    // Mở modal khi double click vào Project 01
+    document.getElementById('project01-icon').ondblclick = function() {
+      const modal = document.getElementById('finder-modal');
+      const content = document.querySelector('.finder-content');
+      content.style.position = '';
+      content.style.left = '';
+      content.style.top = '';
+      modal.style.display = 'flex';
+      modal.classList.add('show');
+      setTimeout(() => { modal.classList.remove('show'); }, 400);
+    };
+
+    // Mở modal khi double click vào Project 02
+    document.querySelector('.desktop-icons .icon.folder:nth-child(3)').ondblclick = function() {
+      const modal = document.getElementById('finder-modal-02');
+      const content = modal.querySelector('.finder-content');
+      content.style.position = '';
+      content.style.left = '';
+      content.style.top = '';
+      modal.style.display = 'flex';
+      modal.classList.add('show');
+      setTimeout(() => { modal.classList.remove('show'); }, 400);
+    };
+
+    // Mở modal khi double click vào Project 03
+    document.querySelector('.desktop-icons .icon.folder:nth-child(5)').ondblclick = function() {
+      const modal = document.getElementById('finder-modal-03');
+      const content = modal.querySelector('.finder-content');
+      content.style.position = '';
+      content.style.left = '';
+      content.style.top = '';
+      modal.style.display = 'flex';
+      modal.classList.add('show');
+      setTimeout(() => { modal.classList.remove('show'); }, 400);
+    };
+
+    // Mở modal khi double click vào Project 04
+    document.querySelector('.desktop-icons .icon.folder:nth-child(6)').ondblclick = function() {
+      const modal = document.getElementById('finder-modal-04');
+      const content = modal.querySelector('.finder-content');
+      content.style.position = '';
+      content.style.left = '';
+      content.style.top = '';
+      modal.style.display = 'flex';
+      modal.classList.add('show');
+      setTimeout(() => { modal.classList.remove('show'); }, 400);
+    };
+    // Đóng modal khi click ra ngoài nội dung cho About Me
+    document.getElementById('aboutme-modal').onclick = function(e) {
+      if (e.target === this) {
+        const modal = this;
+        modal.classList.add('hide');
+        setTimeout(() => {
+          modal.classList.remove('hide');
+          modal.style.display = 'none';
+        }, 350);
+      }
+    };
+      // Đóng modal khi click ra ngoài nội dung cho About Me Tab
+      document.getElementById('aboutme-tab-modal').onclick = function(e) {
+        if (e.target === this) {
+          const modal = this;
+          modal.classList.add('hide');
+          setTimeout(() => {
+            modal.classList.remove('hide');
+            modal.style.display = 'none';
+          }, 350);
+        }
+      };
+    // Đóng modal khi click ra ngoài nội dung cho Project 01
+    document.getElementById('finder-modal').onclick = function(e) {
+      if (e.target === this) {
+        const modal = this;
+        modal.classList.add('hide');
+        setTimeout(() => {
+          modal.classList.remove('hide');
+          modal.style.display = 'none';
+        }, 350);
+      }
+    };
+      // Đóng modal khi click ra ngoài nội dung cho Project 02
+      document.getElementById('finder-modal-02').onclick = function(e) {
+        if (e.target === this) {
+          const modal = this;
+          modal.classList.add('hide');
+          setTimeout(() => {
+            modal.classList.remove('hide');
+            modal.style.display = 'none';
+          }, 350);
+        }
+      };
+      // Đóng modal khi click ra ngoài nội dung cho Project 03
+      document.getElementById('finder-modal-03').onclick = function(e) {
+        if (e.target === this) {
+          const modal = this;
+          modal.classList.add('hide');
+          setTimeout(() => {
+            modal.classList.remove('hide');
+            modal.style.display = 'none';
+          }, 350);
+        }
+      };
+      // Đóng modal khi click ra ngoài nội dung cho Project 04
+      document.getElementById('finder-modal-04').onclick = function(e) {
+        if (e.target === this) {
+          const modal = this;
+          modal.classList.add('hide');
+          setTimeout(() => {
+            modal.classList.remove('hide');
+            modal.style.display = 'none';
+          }, 350);
+        }
+      };
+
+    // Kéo thả cho tất cả các modal Finder và About Me
+    ['aboutme-modal', 'finder-modal', 'finder-modal-02', 'finder-modal-03', 'finder-modal-04'].forEach(function(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      const content = modal.querySelector('.finder-content');
+      const header = modal.querySelector('.finder-header');
+      let isDragging = false, dragOffsetX = 0, dragOffsetY = 0;
+
+      header.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        const rect = content.getBoundingClientRect();
+        dragOffsetX = e.clientX - rect.left;
+        dragOffsetY = e.clientY - rect.top;
+        content.style.position = 'fixed';
+        content.style.zIndex = '101';
+      });
+
+      document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+          let left = e.clientX - dragOffsetX;
+          let top = e.clientY - dragOffsetY;
+          left = Math.max(0, Math.min(window.innerWidth - content.offsetWidth, left));
+          top = Math.max(0, Math.min(window.innerHeight - content.offsetHeight, top));
+          content.style.left = left + 'px';
+          content.style.top = top + 'px';
+        }
+      });
+
+      document.addEventListener('mouseup', function() {
+        isDragging = false;
+      });
+    });
+
+    // Finder window controls: red = close, yellow = maximize/restore
+    (function() {
+      function initFinderControls(modal) {
+        const content = modal.querySelector('.finder-content');
+        const header = modal.querySelector('.finder-header');
+        if (!content || !header) return;
+        const red = header.querySelector('.finder-dot.red');
+        const yellow = header.querySelector('.finder-dot.yellow');
+        if (red) {
+          red.addEventListener('click', function(e) {
+            // close modal
+            modal.classList.add('hide');
+            setTimeout(() => {
+              modal.classList.remove('hide');
+              modal.style.display = 'none';
+            }, 250);
+          });
+        }
+        if (yellow) {
+          yellow.addEventListener('click', function(e) {
+            const isMax = content.classList.toggle('finder-maximized');
+            // update title or aria if needed
+            // when maximized, ensure body scroll isn't interfering
+            if (isMax) {
+              modal.style.alignItems = 'flex-start';
+            } else {
+              modal.style.alignItems = 'center';
+            }
+          });
+        }
+
+        // double-click header toggles maximize
+        header.addEventListener('dblclick', function() {
+          content.classList.toggle('finder-maximized');
+        });
+      }
+
+      ['aboutme-modal', 'finder-modal', 'finder-modal-02', 'finder-modal-03', 'finder-modal-04'].forEach(function(id) {
+        const modal = document.getElementById(id);
+        if (!modal) return;
+        initFinderControls(modal);
+      });
+    })();
+
+    // Mở modal Spotify khi click vào icon dock Spotify
+    document.querySelector('.dock img[alt="Spotify"]').onclick = function() {
+      const modal = document.getElementById('spotify-modal');
+      modal.style.display = 'flex';
+      modal.classList.add('show');
+      setTimeout(() => { modal.classList.remove('show'); }, 400);
+    };
+    // Đóng modal khi click ra ngoài nội dung
+    document.getElementById('spotify-modal').onclick = function(e) {
+      if (e.target === this) {
+        const modal = this;
+        modal.classList.add('hide');
+        setTimeout(() => {
+          modal.classList.remove('hide');
+          modal.style.display = 'none';
+        }, 350);
+      }
+    };
+    // Đóng modal Spotify khi click bất kỳ vị trí nào trên màn hình
+    window.addEventListener('mousedown', function(e) {
+      const modal = document.getElementById('spotify-modal');
+      if (modal && modal.style.display === 'flex') {
+        // Nếu click vào chính modal hoặc nội dung bên trong thì không tắt
+        if (!modal.contains(e.target)) {
+          modal.classList.add('hide');
+          setTimeout(() => {
+            modal.classList.remove('hide');
+            modal.style.display = 'none';
+          }, 350);
+        }
+      }
+    });
+
+    // Make Spotify panel draggable
+    (function() {
+      const modal = document.getElementById('spotify-modal');
+      if (!modal) return;
+      const panel = modal.querySelector('.spotify-content');
+      if (!panel) return;
+      let dragging = false, offsetX = 0, offsetY = 0;
+
+      function startDrag(x, y) {
+        dragging = true;
+        panel.classList.add('dragging');
+        const rect = panel.getBoundingClientRect();
+        offsetX = x - rect.left;
+        offsetY = y - rect.top;
+        panel.style.position = 'fixed';
+        panel.style.zIndex = 9999;
+      }
+
+      function doDrag(x, y) {
+        if (!dragging) return;
+        let left = x - offsetX;
+        let top = y - offsetY;
+        left = Math.max(8, Math.min(window.innerWidth - panel.offsetWidth - 8, left));
+        top = Math.max(8, Math.min(window.innerHeight - panel.offsetHeight - 8, top));
+        panel.style.left = left + 'px';
+        panel.style.top = top + 'px';
+      }
+
+      function endDrag() {
+        dragging = false;
+        panel.classList.remove('dragging');
+      }
+
+      // Mouse
+      panel.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        startDrag(e.clientX, e.clientY);
+      });
+      document.addEventListener('mousemove', function(e) { doDrag(e.clientX, e.clientY); });
+      document.addEventListener('mouseup', endDrag);
+
+      // Touch
+      panel.addEventListener('touchstart', function(e) {
+        const t = e.touches[0];
+        startDrag(t.clientX, t.clientY);
+      }, { passive: false });
+      document.addEventListener('touchmove', function(e) {
+        if (!dragging) return;
+        const t = e.touches[0];
+        doDrag(t.clientX, t.clientY);
+      }, { passive: false });
+      document.addEventListener('touchend', endDrag);
+    })();
+
+    function updateNavDate() {
+      const navDate = document.querySelector('.nav-date');
+      if (!navDate) return;
+      const now = new Date();
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const dayName = days[now.getDay()];
+      const monthName = months[now.getMonth()];
+      const day = now.getDate();
+      let hour = now.getHours();
+      let minute = now.getMinutes();
+      if (minute < 10) minute = '0' + minute;
+      navDate.innerHTML = `${dayName}, ${monthName} ${day} &nbsp; ${hour}:${minute}`;
+    }
+    updateNavDate();
+    setInterval(updateNavDate, 1000);
+  </script>
 </body>
+
 </html>
+
+
